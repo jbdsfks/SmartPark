@@ -12,6 +12,10 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "mongoose": "^5.0.15",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "compression": "~1.7.2",
+    "body-parser": "~1.18.2",
+    "method-override": "~2.3.10",
+    "express-session": "~1.15.6"
   }
 }

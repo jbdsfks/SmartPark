@@ -1,24 +1,40 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-
+var config = require('./src/config/config'),
+    mongoose = require('./src/config/mongoose'),
+    createError = require('http-errors'),
+    express = require('express'),
+    compression=require('compression'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    logger = require('morgan'),
+    methodOverride = require('method-override'),
+    session = require('express-session');
+var db = mongoose();
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'));
+} else if (process.env.NODE_ENV === 'production') {
+    app.use(compression());
+}
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: config.sessionSecret
+}));
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+require('./src/app/routes/users.server.route')(app);
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
