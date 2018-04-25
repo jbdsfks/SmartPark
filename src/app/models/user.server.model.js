@@ -21,6 +21,11 @@ var UserSchema = new Schema({
             }, 'Password should be longer'
         ]
     },
+    money:{
+        type:Number,
+        min:0,
+        default:0.00
+    },
     salt: {
         type: String
     },
@@ -37,6 +42,7 @@ var UserSchema = new Schema({
     }
 });
 UserSchema.statics.findOneByUId = function (uid, callback) {
+    console.log(uid);
     this.findOne({ uid: new RegExp(uid, 'g') }, callback);
 };
 UserSchema.pre('save', function(next) {

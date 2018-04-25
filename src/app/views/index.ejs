@@ -4,12 +4,22 @@
     <title><%= title %></title>
 </head>
 <body>
-<% if ( username ) { %>
-<h2>Hello <%=username%> </h2>
+<% if ( user ) { %>
+<h2>Hello <%= user.username%> </h2>
+<a href="/api/cars/create">添加车辆</a>
+<% if ( car ) { %>
+<%= user.username %>的<%= car.brand %><a href="/api/cars/<%= car._id %>">删除</a>
+<% } %>
 <a href="/signout">Sign out</a>
 <% } else { %>
 <a href="/signup">Signup</a>
 <a href="/signin">Signin</a>
 <% } %>
+
+<!--
+
+    :
+
+-->
 </body>
 </html>

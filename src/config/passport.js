@@ -5,11 +5,12 @@ module.exports = function() {
     passport.serializeUser(function(user, done) {
         done(null, user.uid);
     });
-    passport.deserializeUser(function(uid, done) { User.findOneByUId({
-        uid: uid
-    }, '-password -salt', function(err, user) {
-        done(err, user);
-    });
+    passport.deserializeUser(function(uid, done) {
+        User.findOne({
+            uid: uid
+        }, '-password -salt', function(err, user) {
+            done(err, user);
+        });
     });
     require('./strategies/local.js')();
 };
