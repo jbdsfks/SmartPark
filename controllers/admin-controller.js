@@ -151,7 +151,7 @@ app.controller ('adminController', function ($scope,$location) {
 			}
 
 		}else{
-			$scope.errorInfo='车牌号ID不能为空！';
+			$scope.errorInfo='车牌号不能为空！';
 		}
 	}
 
