@@ -10,7 +10,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 
 var managerindex = require('./routes/managerindex');
-
+var commonindex = require('./routes/commonindex');
 var adminindex = require('./routes/adminindex');
 
 var app = express();
@@ -29,7 +29,7 @@ app.use('/login', login);
 app.use('/register', register);
 
 app.use('/managerindex', managerindex);
-
+app.use('/commonindex', commonindex);
 app.use('/adminindex', adminindex);
 
 
@@ -60,4 +60,3 @@ app.use(function (req, res) {
 
 app.listen(3001);
 module.exports = app;
-
