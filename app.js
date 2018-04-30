@@ -1,8 +1,5 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 
 
 var index = require('./routes/index');
@@ -13,7 +10,14 @@ var managerindex = require('./routes/managerindex');
 var commonindex = require('./routes/commonindex');
 var adminindex = require('./routes/adminindex');
 
+var mongoose = require('./src/config/mongoose'),
+    passport = require('./src/config/passport'),
+    express = require('./src/config/express');
+
+
+var db = mongoose();
 var app = express();
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -47,6 +51,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+var passport = passport();
+
 
 app.use(function (req, res) {
     console.log(req.path);
