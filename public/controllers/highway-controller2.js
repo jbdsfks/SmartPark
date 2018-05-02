@@ -1,10 +1,9 @@
 /*
 * 返回用户信息
-* QuaryUsername(userid)——用户名
-* QuaryPassword(userid)——密码
+* QuaryPassword(username)——密码
 *
 * 返回收费站信息
-* QuaryStationId(userid)——ID
+* QuaryStationId(username)——ID
 * QuaryStationName(stationid)——名称
 * QuaryStationFlow(stationid,time)——当天的车流量
 * QuaryStationPhone(stationid)——联系方式
@@ -13,29 +12,24 @@
 * 
 * QuaryRec(stationid)——返回全部出入记录
 * 
-* Save_Station(userid,username,pasword,stationid,stationname,stationphone,stationaddress)——更改收费站admin信息，成功返回true
+* Save_Station(username,pasword,stationid,stationname,stationphone,stationaddress)——更改收费站admin信息，成功返回true
 */
 
 
 
 app.controller('highwayController2',function($scope,$location){
 
-
-	$scope.userid=localStorage.user;
-	$scope.time=getNowFormatDate();
-
 	/*
-	$scope.username=QuaryUsername($scope.userid);
-	$scope.password=QuaryPassword($scope.userid);
+	$scope.password=QuaryPassword($scope.username);
 
-	$scope.stationid=QuaryStationId($scope.userid);
+	$scope.stationid=QuaryStationId($scope.username);
 	$scope.stationname=QuaryStationName($scope.stationid);
 	$scope.stationphone=QuaryStationPhone($scope.stationid);
 	$scope.parkaddress= QuaryStationkAddress($scope.stationid);
 	$scope.flow=QuaryStationFlow($scope.stationid,$scope.time);
 	$scope.income=QuaryStationIncome($scope.stationid);*/
 
-	$scope.username="XX1"
+	$scope.username=localStorage.user;
 	$scope.password="123456";
 
 	$scope.stationid="001";
@@ -44,7 +38,8 @@ app.controller('highwayController2',function($scope,$location){
 	$scope.stationaddress="江苏省苏州市姑苏区";
 	$scope.flow="2000";
 	$scope.income="7817281";
-	
+
+	$scope.time=getNowFormatDate();
 
 	$scope.divList=function (page) {
        if (page == 0) {
@@ -238,7 +233,7 @@ app.controller('highwayController2',function($scope,$location){
     			if($scope.stationname){
     				if($scope.stationphone){
     					if($scope.stationaddress){
-    						//var f=Save_Station($scope.userid,$scope.username,$scope.pasword,$scope.stationid,$scope.stationname,$scope.stationphone,$scope.stationaddress);
+    						//var f=Save_Station($scope.username,$scope.pasword,$scope.stationid,$scope.stationname,$scope.stationphone,$scope.stationaddress);
     						if(true){
     							alert('更改成功！');
 
