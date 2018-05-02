@@ -1,49 +1,104 @@
 <%include head%>
-   <script src="/controllers/register-controller.js"></script>
+    <script src="/controllers/register-controller.js"></script>
+    <style>
+    input{
+      width: 140px;
+      height: 25px;
+      font-size: 15px;
+    }
+    select{
+      width: 150px;
+      height: 30px;
+      font-size: 12px;
+    }
+    .btn-register{
+      width: 240px;
+      height: 40px;
+      font-size: 15px;
+    }
+    </style>
+</head>
 <body>
-<div class="container-fluid"  ng-controller="registerController">
-  <div class="row-fluid">
-    <div class="span12" style="color: white;background-color: black;">
-      <h2 class="text-center">停车场数据管理系统</h2>
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <div class="container-fluid">
-             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-<div class="nav-collapse collapse navbar-responsive-collapse">
-              <ul class="nav">
-                <li class="active"><a href="/">首页</a></li>
-              </ul>
-              <ul class="nav pull-right">
-                <li><a href="/login">登录</a></li>
-              </ul>
+    <div class="container-fluid" >
+      <div class="row-fluid">
+        <div class="span12" style="color: white;background-color: black;">
+          <h2 class="text-center">XXXXXXXXXXXX</h2>
+          <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <div class="container-fluid">
+                  <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav pull-right">
+                      <li><a href="/">登录</a></li>
+                    </ul>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-   <div class="row-fluid" ng-controller="registerController1" ><center>
-        <br><br><br>
-         用&nbsp;户&nbsp;名&nbsp;&nbsp;&nbsp;&nbsp;<input id="username" type="text" autocomplete="off"   ng-model="username" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
+      
+      <div class="row-fluid"  ng-controller="registerController">
+      <center><h3>新用户注册</h3><br>
+        用&nbsp;&nbsp;户&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;：
+          <input id="username" type="text" autocomplete="off"   ng-model="username" ng-click="clearErrorInfo()"/><br>
          
-         手&nbsp;机&nbsp;号&nbsp;&nbsp;&nbsp;&nbsp;<input id="phone" type="text" autocomplete="off"   ng-model="phone" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
-         
-         密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;<input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
+        密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;：
+          <input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()"/><br>
 
-         确认密码&nbsp;&nbsp;&nbsp;&nbsp;<input id="confirmpassword" type="text" placeholder="请输入再次输入密码"  ng-model="confirmpassword" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
-            
-        <form>
-          用户类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select ng-model="usertype" style="width: 150px;height: 30px;font-size: 12px;" >
-                      <option value="">
-                      <option value="common">普通用户
-                      <option value="manager">停车场管理员
-                  </select>
-          </form><br>
-      <br>
-      <button id="btnSub" type="submit" class="btn btn-success btn-lg" ng-click="register()" style="width: 210px;height: 40px;font-size: 15px;">注册</button>
-      <p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>
-        </center>
+        确认密码&nbsp;&nbsp;&nbsp;&nbsp;：
+          <input id="confirmpassword" type="text" placeholder="请输入再次输入密码"  ng-model="confirmpassword" ng-click="clearErrorInfo()"/><br>
+        <hr>
+        用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
+          <select ng-model="usertype">
+              <option value="">
+              <option value="park-manager">停车场管理员
+              <option value="highway-worker">收费站工作人员
+              <option value="highway-admin">收费站admin
+          </select><br>
+        <div ng-switch="usertype">
+          <div ng-switch-when="park-manager">
+            停车场名称：
+              <input id="parkname" type="text" autocomplete="off"   ng-model="parkname" ng-click="clearErrorInfo()"/><br>
+            总&nbsp;&nbsp;车&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;：
+              <input id="parksize" type="text"  ng-model="parksize" ng-click="clearErrorInfo()"/><br>
+            收费标准&nbsp;&nbsp;&nbsp;&nbsp;：
+              <input id="parkprice" type="text" placeholder="单位：元/小时"  ng-model="parkprice" ng-click="clearErrorInfo()"/><br>
+            联系方式&nbsp;&nbsp;&nbsp;&nbsp;：
+              <input id="parkphone" type="text"  ng-model="parkphone" ng-click="clearErrorInfo()"/><br>
+            地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
+              <input id="parkaddress" type="text"  ng-model="parkaddress" ng-click="clearErrorInfo()" /><br>
+          </div>
+          <div ng-switch-when="highway-worker">
+              收&nbsp;&nbsp;费&nbsp;&nbsp;站&nbsp;&nbsp;&nbsp;&nbsp;：
+              <select ng-model="stationname">
+                  <option value="">
+                  <option value="沪宁高速南京收费站">沪宁高速南京收费站
+                  <option value="沪宁高速苏州新区收费站">沪宁高速苏州新区收费站
+                  <option value="沪宁高速花桥收费站">沪宁高速花桥收费站
+              </select><br> 
+          </div>
+          <div ng-switch-when="highway-admin">
+              收费站名称：
+                <input id="stationname" type="text" placeholder=""  ng-model="stationname" ng-click="clearErrorInfo()" /><br>
+              联系方式&nbsp;&nbsp;&nbsp;&nbsp;：
+                <input id="stationphone" type="text"  ng-model="stationphone" ng-click="clearErrorInfo()"/><br>
+              地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
+                <input id="stationaddress" type="text"  ng-model="stationaddress" ng-click="clearErrorInfo()"/><br>
+          </div>
+          <div ng-switch-default>      
+          </div>
+        </div><br>
+        <hr>
+        <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="regi  ster()">注册</button>
+        <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
+      </center>
+      </div>
     </div>
-</div>
+
 </body>
 </html>
