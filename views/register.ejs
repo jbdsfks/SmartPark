@@ -72,15 +72,17 @@
               <input id="parkphone" type="text"  ng-model="parkphone" ng-click="clearErrorInfo()"/><br>
             地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
               <input id="parkaddress" type="text"  ng-model="parkaddress" ng-click="clearErrorInfo()" /><br>
+            <hr>
+            <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register1(username,password,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress)">注册</button>
+            <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
           </div>
           <div ng-switch-when="highway-worker">
               收&nbsp;&nbsp;费&nbsp;&nbsp;站&nbsp;&nbsp;&nbsp;&nbsp;：
-              <select ng-model="stationname">
-                  <option value="">
-                  <option value="沪宁高速南京收费站">沪宁高速南京收费站
-                  <option value="沪宁高速苏州新区收费站">沪宁高速苏州新区收费站
-                  <option value="沪宁高速花桥收费站">沪宁高速花桥收费站
+              <select ng-init="stationname = station[0]" ng-model="stationname" ng-options="x for x in station">
               </select><br> 
+              <hr>
+              <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register2(username,password,confirmpassword,stationname)">注册</button>
+              <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
           </div>
           <div ng-switch-when="highway-admin">
               收费站名称：
@@ -89,13 +91,14 @@
                 <input id="stationphone" type="text"  ng-model="stationphone" ng-click="clearErrorInfo()"/><br>
               地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
                 <input id="stationaddress" type="text"  ng-model="stationaddress" ng-click="clearErrorInfo()"/><br>
+              <hr>
+              <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register3(username,password,confirmpassword,stationname,stationphone,stationaddress)">注册</button>
+              <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
           </div>
-          <div ng-switch-default>      
+          <div ng-switch-default>
           </div>
         </div><br>
-        <hr>
-        <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="regi  ster()">注册</button>
-        <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
+        
       </center>
       </div>
     </div>
