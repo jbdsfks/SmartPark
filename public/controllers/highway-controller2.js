@@ -56,120 +56,123 @@ app.controller('highwayController2',function($scope,$location){
     }
 
     $scope.inout=true;
-  	$scope.data=false;
+  	$scope.data_statistic=false;
     $scope.setting=false;
     $scope.alterinfo=false;
 
     //var record0=QuaryRec($scope.stationid);
   	var record0=[
-		  {
-		    "id": "1",
-		    "username": "X1",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "2",
-		    "username": "X2",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "3",
-		    "username": "X3",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "4",
-		    "username": "X4",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "5",
-		    "username": "X5",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "6",
-		    "username": "X6",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "7",
-		    "username": "X7",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "8",
-		    "username": "X8",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "9",
-		    "username": "X9",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "10",
-		    "username": "X10",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  },
-		  {
-		    "id": "11",
-		    "username": "X11",
-		    "carid": "苏A88888",
-		    "intime": "2018-04-11 12:00:00",
-		    "outtime": "2018-04-11 18:00:00",
-		    "duration": "6h",
-		    "pay": "60.00"
-		  }
-		];
+	  {
+	    "id": "1",
+	    "username": "X1",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "2",
+	    "username": "X2",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "3",
+	    "username": "X3",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "4",
+	    "username": "X4",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "5",
+	    "username": "X5",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "6",
+	    "username": "X6",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "7",
+	    "username": "X7",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "8",
+	    "username": "X8",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "9",
+	    "username": "X9",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "10",
+	    "username": "X10",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  },
+	  {
+	    "id": "11",
+	    "username": "X11",
+	    "carid": "苏A88888",
+	    "intime": "2018-04-11 12:00:00",
+	    "outtime": "2018-04-11 18:00:00",
+	    "duration": "6h",
+	    "pay": "60.00"
+	  }
+	];
 	func(record0);
     $scope.divList();
     init();
 
 	function init(){
+		func(record0);
+	    $scope.divList();
 		$scope.errorInfo='';
+
 	  	$scope.inout=true;
-	  	$scope.data=false;
+	  	$scope.data_statistic=false;
 	    $scope.setting=false;
 	    $scope.alterinfo=false;
 	}
@@ -203,9 +206,193 @@ app.controller('highwayController2',function($scope,$location){
     }
 
     $scope.Data=function(){
+    	var data0=[
+		  {
+		    "date": "2018-4-1",
+		    "instation": "1000",
+		    "outstaion": "1000",
+		    "income": "2000"
+		  },
+		  {
+		    "date": "2018-4-2",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-3",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-4",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-5",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-6",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-7",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-8",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-9",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-10",
+		    "instation": "1000",
+		    "outstaion": "1000",
+		    "income": "2000"
+		  },
+		  {
+		    "date": "2018-4-11",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-12",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-13",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-14",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-15",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-16",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-17",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-18",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-19",
+		    "instation": "1000",
+		    "outstaion": "1000",
+		    "income": "2000"
+		  },
+		  {
+		    "date": "2018-4-20",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-21",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-22",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-23",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-24",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-25",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-26",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-27",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-28",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  },
+		  {
+		    "date": "2018-4-29",
+		    "instation": "1024",
+		    "outstaion": "1024",
+		    "income": "2142"
+		  },
+		  {
+		    "date": "2018-4-30",
+		    "instation": "999",
+		    "outstaion": "999",
+		    "income": "1987"
+		  }
+		];
         init();
+        func(data0);
+   		$scope.divList();
         $scope.inout=false;
-        $scope.data=true;
+        $scope.data_statistic=true;
     }
 
     $scope.Setting=function(){
