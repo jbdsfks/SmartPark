@@ -32,10 +32,6 @@ app.controller ('registerController',function ($scope,$location) {
 
     $scope.station=["沪宁高速南京收费站", "沪宁高速苏州新区收费站", "沪宁高速花桥收费站"];
 
-    $scope.register1=function(){
-        $scope.errorInfo = '对了'+$scope.stationname;
-    }
-
     $scope.register1=function(username,password,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress){
         if(username){
             if(password){
