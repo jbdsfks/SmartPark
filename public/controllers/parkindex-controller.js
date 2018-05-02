@@ -1,13 +1,12 @@
 /*
 *
 * 返回用户信息
-* QuaryUsername(userid)——用户名
-* QuaryPassword(userid)——密码
+* QuaryPassword(username)——密码
 *
 * 返回停车场信息
-* QuaryParkId(userid)——ID
+* QuaryParkId(username)——ID
 * QuaryParkName(parkid)——名称
-* QuaryParkSize(uparkid)——总车位
+* QuaryParkSize(parkid)——总车位
 * QuaryParkPhone(parkid)——联系方式
 * QuaryParkPrice(parkid)——收费标准
 * QuaryParkAddress(parkid)——地址
@@ -27,21 +26,19 @@
 app.controller('parkController',function($scope,$location){
 
 	/*
-	$scope.username=QuaryUsername($scope.userid);
-	$scope.password=QuaryPassword($scope.userid);
+	$scope.password=QuaryPassword($scope.username);
 
-	$scope.parkid=QuaryParkId($scope.userid);
-	$scope.parkname=QuaryParkName($scope.userid);
-	$scope.parksize=QuaryParkSize($scope.usserid);
-	$scope.parkphone=QuaryParkPhone($scope.userid);
-	$scope.parkprice=QuaryParkPrice($scope.userid);
-	$scope.parkaddress=QuaryParkAddress($scope.userid);
-	$scope.parkfree=QuaryParkFree($scope.userid);
+	$scope.parkid=QuaryParkId($scope.username);
+	$scope.parkname=QuaryParkName($scope.parkid);
+	$scope.parksize=QuaryParkSize($scope.parkid);
+	$scope.parkphone=QuaryParkPhone($scope.parkid);
+	$scope.parkprice=QuaryParkPrice($scope.parkid);
+	$scope.parkaddress=QuaryParkAddress($scope.parkid);
+	$scope.parkfree=QuaryParkFree($scope.parkid);
 
 	*/
 
-	$scope.userid=localStorage.user;
-	$scope.username="XX1"
+	$scope.username=localStorage.user;
 	$scope.password="123456";
 
 	$scope.parkid="001";
