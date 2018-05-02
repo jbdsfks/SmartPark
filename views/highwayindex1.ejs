@@ -136,11 +136,8 @@
               </tr>
               <tr>
                 <th class="th-info">收费站名称</th>
-                <th class="th-info"><select ng-model="stationname">
-                                      <option value="沪宁高速南京收费站">沪宁高速南京收费站
-                                      <option value="沪宁高速苏州新区收费站">沪宁高速苏州新区收费站
-                                      <option value="沪宁高速花桥收费站">沪宁高速花桥收费站
-                                    </select></th>
+                <th class="th-info"><select ng-init="stationname = station[0]" ng-model="stationname" ng-options="x for x in station">
+              </select></th>
               </tr>
           </table>
           <button id="btnSub" type="submit" class="btn btn-success btn-lg" ng-click="save()">保存</button>
