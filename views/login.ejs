@@ -1,5 +1,5 @@
 <%include head%>
-<script src="/controllers/login-controller.js"></script>
+    <script src="/controllers/login-controller.js"></script>
     <style>
     input{
       width: 140px;
@@ -22,7 +22,7 @@
     <div class="container-fluid" >
       <div class="row-fluid">
         <div class="span12" style="color: white;background-color: black;">
-          <h2 class="text-center">XXXXXXXXXX</h2>
+          <h2 class="text-center">XXXXXXXXXXXX</h2>
           <div class="navbar navbar-inverse">
             <div class="navbar-inner">
               <div class="container-fluid">
@@ -41,26 +41,24 @@
           </div>
         </div>
       </div>
-   <div class="row-fluid" ng-controller="loginController" >
-    <center>
-      <h3>用户登录</h3><br>
-      用&nbsp;&nbsp;户&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;：
-        <input id="userid" type="text" autocomplete="off"   ng-model="userid" ng-click="clearErrorInfo()"/><br>
-       
-      密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;：
-        <input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()"/><br>
-      用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
-        <select ng-model="usertype">
-            <option value="">
-            <option value="park-manager">停车场管理员
-            <option value="highway-worker">收费站工作人员
-            <option value="highway-admin">收费站admin
-        </select><br>
-      <hr>
-      <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="login()">登录</button>
-      <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
-    </center>
+      
+      <div class="row-fluid"  ng-controller="loginController">
+      <center><h3>用户登录</h3><br>
+        用&nbsp;&nbsp;户&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;：
+          <input id="username" type="text" autocomplete="off"   ng-model="username" ng-click="clearErrorInfo()"/><br>
+         
+        密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;：
+          <input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()"/><br>
+
+        用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
+          <select ng-init="usertype = user[0]" ng-model="usertype" ng-options="x for x in user">
+          </select><br>
+        <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="login()">登录</button>
+            <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
+        
+      </center>
+      </div>
     </div>
-</div>
+
 </body>
 </html>
