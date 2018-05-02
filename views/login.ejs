@@ -1,45 +1,65 @@
 <%include head%>
-   <script src="/controllers/login-controller.js"></script>
+<script src="/controllers/login-controller.js"></script>
+    <style>
+    input{
+      width: 140px;
+      height: 25px;
+      font-size: 15px;
+    }
+    select{
+      width: 150px;
+      height: 30px;
+      font-size: 12px;
+    }
+    .btn-register{
+      width: 240px;
+      height: 40px;
+      font-size: 15px;
+    }
+    </style>
+</head>
 <body>
-<div class="container-fluid"  ng-controller="loginController">
-  <div class="row-fluid">
-    <div class="span12" style="color: white;background-color: black;">
-      <h2 class="text-center">停车场数据管理系统</h2>
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <div class="container-fluid">
-             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-            <div class="nav-collapse collapse navbar-responsive-collapse">
-              <ul class="nav">
-                <li class="active"><a href="/">首页</a></li>
-              </ul>
-              <ul class="nav pull-right">
-                <li><a href="/register">注册</a></li>
-              </ul>
+    <div class="container-fluid" >
+      <div class="row-fluid">
+        <div class="span12" style="color: white;background-color: black;">
+          <h2 class="text-center">XXXXXXXXXX</h2>
+          <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <div class="container-fluid">
+                  <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav pull-right">
+                      <li><a href="/register">注册</a></li>
+                    </ul>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-    <script src="/javascripts/login-controller.js"></script>
-   <div class="row-fluid" ng-controller="loginController" ><center>
-        <br><br><br>
-           用&nbsp;户&nbsp;名&nbsp;&nbsp;&nbsp;&nbsp;<input id="userid" type="text" autocomplete="off"  ng-model="userid" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
-           
-           密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;<input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()" style="width: 140px;height: 25px;font-size: 15px;" /><br>
-
-          <form>
-            用户类型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select ng-model="usertype" style="width: 150px;height: 30px;font-size: 12px;" >
-                        <option value="">
-                        <option value="common">普通用户
-                        <option value="manager">停车场管理员
-                        <option value="admin">Admin
-                    </select>
-            </form><br>
-            <button id="btnSub" type="submit" class="btn btn-success btn-lg" ng-click="login()" style="width: 210px;height: 40px;font-size: 15px;">登录</button>
-            <p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>
-        </center>
+   <div class="row-fluid" ng-controller="loginController" >
+    <center>
+      <h3>用户登录</h3><br>
+      用&nbsp;&nbsp;户&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;：
+        <input id="userid" type="text" autocomplete="off"   ng-model="userid" ng-click="clearErrorInfo()"/><br>
+       
+      密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;&nbsp;&nbsp;&nbsp;：
+        <input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()"/><br>
+      用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
+        <select ng-model="usertype">
+            <option value="">
+            <option value="park-manager">停车场管理员
+            <option value="highway-worker">收费站工作人员
+            <option value="highway-admin">收费站admin
+        </select><br>
+      <hr>
+      <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="login()">登录</button>
+      <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
+    </center>
     </div>
 </div>
 </body>
