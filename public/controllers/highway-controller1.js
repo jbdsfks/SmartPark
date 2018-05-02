@@ -1,10 +1,9 @@
 /*
 * 返回用户信息
-* QuaryUsername(userid)——用户名
-* QuaryPassword(userid)——密码
+* QuaryPassword(username)——密码
 *
 * 返回收费站信息
-* QuaryStationId(userid)——ID
+* QuaryStationId(username)——ID
 * QuaryStationName(stationid)——名称
 * QuaryStationFlow(stationid,time)——当天的车流量
 * QuaryStationPhone(stationid)——联系方式
@@ -13,26 +12,22 @@
 * 
 * QuaryRec(stationid)——返回全部出入记录
 * 
-* Save_StationWorker(userid,username,password,stationname)——更改收费站工作人员信息，成功返回true
+* Save_StationWorker(username,password,stationname)——更改收费站工作人员信息，成功返回true
 */
 
 app.controller('highwayController1',function($scope,$location){
 
-	$scope.userid=localStorage.user;
-	$scope.time=getNowFormatDate();
-
 	/*
-	$scope.username=QuaryUsername($scope.userid);
-	$scope.password=QuaryPassword($scope.userid);
+	$scope.password=QuaryPassword($scope.username);
 
-	$scope.stationid=QuaryStationId($scope.userid);
+	$scope.stationid=QuaryStationId($scope.username);
 	$scope.stationname=QuaryStationName($scope.stationid);
 	$scope.stationphone=QuaryStationPhone($scope.stationid);
 	$scope.parkaddress= QuaryStationkAddress($scope.stationid);
 	$scope.flow=QuaryStationFlow($scope.stationid,$scope.time);
 	$scope.income=QuaryStationIncome($scope.stationid);*/
 
-	$scope.username="XX1"
+	$scope.username=localStorage.user;
 	$scope.password="123456";
 
 	$scope.stationid="001";
@@ -41,6 +36,9 @@ app.controller('highwayController1',function($scope,$location){
 	$scope.parkaddress="江苏省苏州市姑苏区";
 	$scope.flow="2000";
 	$scope.income="7817281";
+
+	$scope.time=getNowFormatDate();
+	$scope.station=["沪宁高速南京收费站", "沪宁高速苏州新区收费站", "沪宁高速花桥收费站"];
 	
 
 	$scope.divList=function (page) {
@@ -222,17 +220,13 @@ app.controller('highwayController1',function($scope,$location){
 	$scope.save=function(){
 		if($scope.username){
 			if($scope.password){
-				if($scope.stationname){
-					//var f=Save_StationWorker($scope.userid,$scope.username,$scope.password,$scope.stationname);
-					if(true){
-						alert('更改成功！');
-						init();
-					}else{
-						alert('更改失败！');
-						init();
-					}
+				//var f=Save_StationWorker($scope.username,$scope.password,$scope.stationname);
+				if(true){
+					alert('更改成功！');
+					init();
 				}else{
-					$scope.errorInfo='收费站名称不能为空！';
+					alert('更改失败！');
+					init();
 				}
 			}else{
 				$scope.errorInfo='密码不能为空！';
