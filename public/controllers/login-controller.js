@@ -1,50 +1,55 @@
 /*
-*id 用户id
-*pwd 用户密码
-*type 用户类型（common/manager/admin）
 *
-* loginCommon(id,pwd,type) ——普通用户登录，成功返回true
+* loginPark(username,password) ——停车场管理员登录，成功返回true
 * 
-* loginManager(id,pwd,type) ——管理员登录，成功返回true
+* loginHighwayWorker(username,password) ——收费站工作登人员登录，成功返回true
 * 
-* loginAdmin(id,pwd,type) ——admin登录，成功返回true
+* loginHighwayAdmin(username,password) ——收费站admin登录，成功返回true
 */
 
-app.controller('loginController',function($scope,$location){
 
-    $scope.clickInfo=function(){
-        $scope.errorInfo='';
+app.controller ('loginController',function ($scope,$location) {
+
+    $scope.clickInfo = function () {
+        $scope.errorInfo = '';
     }
-    $scope.userid='';
-    $scope.password='';
-    $scope.usertype='';
+    $scope.username = '';
+    $scope.password = '';
+    $scope.usertype = '';
 
+    $scope.user=["停车场管理员", "收费站工作人员", "收费站admin"];
     $scope.login=function(){
-        if($scope.userid){
+        if($scope.username){
             if($scope.password){
-                if($scope.usertype){
-                    if($scope.usertype=='common'){
-                        localStorage.user=$scope.userid;
-                        localStorage.cookie="userid";
-                        $location.path('/commonindex');
-                    }else if ($scope.usertype=='manager'){
-                        localStorage.user=$scope.userid;
-                        localStorage.cookie="userid";
-                        $location.path('/managerindex');
-                    }else{
-                        localStorage.user=$scope.userid;
-                        localStorage.cookie="userid";
-                        $location.path('/adminindex');
+                if($scope.usertype==$scope.user[0]){
+                    //var f=loginPark(username,password)
+                    if(true){
+                        localStorage.user=$scope.username;
+                        localStorage.cookie="username";
+                        $location.path('/parkindex');
+                    }
+                }else if($scope.usertype==$scope.user[1]){
+                    //var f=loginHighwayWorker(username,password);
+                    if(true){
+                        localStorage.user=$scope.username;
+                        localStorage.cookie="username";
+                        $location.path('/highwayindex1');
                     }
                 }else{
-                    $scope.errorInfo='用户类型不能为空！';
+                    //var f=loginHighwayAdmin(username,password);
+                    if(true){
+                        localStorage.user=$scope.username;
+                        localStorage.cookie="username";
+                        $location.path('/highwayindex2');
+                    }
                 }
             }else{
-                $scope.errorInfo='密码不能为空！';
+                $scope.errorInfo = '密码不能为空！';
             }
         }else{
-            $scope.errorInfo='用户名不能为空！';
+           $scope.errorInfo = '用户名不能为空！';
         }
     }
+
     
 });

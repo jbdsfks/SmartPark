@@ -6,10 +6,6 @@ app.config ( function ( $routeProvider,$locationProvider){
     $locationProvider.html5Mode ( true);
     $routeProvider
     .when ( '/',{
-        controller:'indexController',
-        templateUrl:'index.ejs'
-    })
-    .when ( '/login',{
         controller:'loginController',
         templateUrl:'login.ejs'
     })
@@ -17,19 +13,19 @@ app.config ( function ( $routeProvider,$locationProvider){
         controller:'registerController',
         templateUrl:'register.ejs'
     })
-    .when ( '/commonindex',{
-        controller:'commonController',
-        templateUrl:'commonindex.ejs'
+    .when ( '/parkindex',{
+        controller:'parkController',
+        templateUrl:'parkindex.ejs'
     })
-    .when ( '/managerindex',{
-        controller:'managerController1',
-        templateUrl:'managerindex.ejs'
+    .when ( '/highwayindex1',{
+        controller:'highwayController1',
+        templateUrl:'highwayindex1.ejs'
     })
-    .when ( '/adminindex',{
-        controller:'adminController1',
-        templateUrl:'adminindex.ejs'
+    .when ( '/highwayindex2',{
+        controller:'highwayController2',
+        templateUrl:'highwayindex2.ejs'
     })
     .otherwise ( {
-        redirectTo:'/index'
+        redirectTo:'/'
     });
 });

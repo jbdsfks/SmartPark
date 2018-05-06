@@ -1,0 +1,273 @@
+<%include head%>
+    <script src="/controllers/park-controller.js"></script>
+  <style>
+    
+    .th-info,td-info{
+      text-align: center;
+      width: 30%;
+    }
+  </style>
+   </head>
+   
+<body>
+<div class="container-fluid"  ng-controller="parkController">
+   <div class="row-fluid">
+    <div class="span12" style="color: white;background-color: black;">
+      <h2 class="text-center">XXXXXXXXXX</h2>
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span></a>
+             <div class="nav-collapse collapse navbar-responsive-collapse">
+                <ul class="nav">
+                  <li class="active"><a ng-click="Hello()">你好，{{username}}</a></li>
+                  <li class="active"><a ng-click="Index()">主页</a></li>
+                  <li class="active"><a ng-click="Record()">停车记录</a></li>
+                  <li class="active"><a ng-click="Setting()">设置</a></li>
+                </ul>
+                <ul class="nav pull-right">
+                  <li><a ng-click="logout()">注销登录</a></li>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid" ng-show="todayparking">
+    <h2>今日停车</h2>
+      <div class="span3" style="width: 18%;">
+            <div class="list-group" >
+                &nbsp;&nbsp;&nbsp;<h3>总车位：<span >{{parksize}}</span></h3>
+                &nbsp;&nbsp;&nbsp;<h3>空车位：<span>{{parkfree}}</span></h3>
+            </div>
+          </div>
+      <div class="span9"  style="width: 70%;position: relative;margin-top: -80px;" >
+          <center><div class="page-header" style="font-size: 20px;" >{{parkname}}停车情况[{{time}}]</div></center>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Carid</th>
+                  <th>Intime</th>
+                  <th>Outtime</th>
+                  <th>Duration</th>
+                  <th>Pay</th>
+                </tr>
+             </thead>
+              <tbody>
+                <tr ng-repeat="obj in list">
+                  <td>{{obj.id}}</td>
+                  <td>{{obj.username}}</td>
+                  <td>{{obj.carid}}</td>
+                  <td>{{obj.intime}}</td>
+                  <td>{{obj.outtime}}</td>
+                  <td>{{obj.duration}}</td>
+                  <td>{{obj.pay}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <center><div class="page" style="color: blue;">共<span ng-bind="data.length"></span>条记录
+              <span ng-click="divList(0)" class="link">首页</span>
+              <span ng-click="divList(-1)" ng-show="currentPage > 0" class="link">上一页</span>
+              <span ng-click="divList(1)" ng-show="currentPage!=totalPage" class="link">下一页</span>
+            </div></center>
+          </div>
+  </div>
+
+  <div class="row-fluid" ng-show="parkingrecord">
+    <h2>停车记录</h2>
+    <div style="position: relative;top: -70px;left:350px;width: 50%;">
+      <center>
+        <input id="parkid" type="text" autocomplete="off" placeholder="请输入车牌号" ng-model="carid" ng-click="clearErrorInfo()" style="width: 300px;height: 30px;font-size: 17px;margin-top: 10px;" />
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-success btn-lg" type="button" style="width: 50px;height: 40px;" ng-click="Quary()">查询</button>
+        <p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>
+      </center>
+    </div>
+
+    <center>
+        <div style="position: relative;top:-50px;width: 94%;">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <th>Carid</th>
+                  <th>Intime</th>
+                  <th>Outtime</th>
+                  <th>Duration</th>
+                  <th>Pay</th>
+                </tr>
+             </thead>
+              <tbody>
+                <tr  ng-repeat="obj in list">
+                  <td>{{obj.id}}</td>
+                  <td>{{obj.username}}</td>
+                  <td>{{obj.carid}}</td>
+                  <td>{{obj.intime}}</td>
+                  <td>{{obj.outtime}}</td>
+                  <td>{{obj.duration}}</td>
+                  <td>{{obj.pay}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="page" style="color: blue;">共<span ng-bind="data.length"></span>条记录
+              <span ng-click="divList(0)" class="link">首页</span>
+              <span ng-click="divList(-1)" ng-show="currentPage > 0" class="link">上一页</span>
+              <span ng-click="divList(1)" ng-show="currentPage!=totalPage" class="link">下一页</span>
+            </div>
+        </div>
+    </center>
+  </div>
+
+  <div class="row-fluid" ng-show="quarycarid">
+    <h2>停车记录</h2>
+    <div style="position: relative;top: -70px;left:350px;width: 50%;">
+      <center>
+        <input id="parkid" type="text" autocomplete="off" placeholder="请输入车牌号" ng-model="carid" ng-click="clearErrorInfo()" style="width: 300px;height: 30px;font-size: 17px;margin-top: 10px;" />
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-success btn-lg" type="button" style="width: 50px;height: 40px;" ng-click="Quary()">查询</button>
+        <p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>
+      </center>
+    </div>
+
+    <center>
+      <div style="position: relative;top:-50px;width: 94%;">
+        <table class="table table-striped">
+          <thead>
+            <tr>  
+              <th>Id</th>
+              <th>Username</th>
+              <th>Carid</th>
+              <th>Intime</th>
+              <th>Outtime</th>
+              <th>Duration</th>
+              <th>Pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  ng-repeat="obj in list">
+              <td>{{obj.id}}</td>
+              <td>{{obj.username}}</td>
+              <td>{{obj.carid}}</td>
+              <td>{{obj.intime}}</td>
+              <td>{{obj.outtime}}</td>
+              <td>{{obj.duration}}</td>
+              <td>{{obj.pay}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="page" style="color: blue;">共<span ng-bind="data.length"></span>条记录
+          <span ng-click="divList(0)" class="link">首页</span>
+          <span ng-click="divList(-1)" ng-show="currentPage > 0" class="link">上一页</span>
+          <span ng-click="divList(1)" ng-show="currentPage!=totalPage" class="link">下一页</span>
+        </div>
+      </div>
+    </center>
+  </div>
+
+
+  <div class="row-fluid" ng-show="setting">
+     <h2>设置</h2>
+      <div style="width: 200px; position: relative;left: 20px;top:100px;text-align: center;" >
+          <a ng-click="Info()" class="list-group-item" >基本信息</a>
+          <a ng-click="AlterInfo()" class="list-group-item">更改信息</a>
+      </div>
+      <div style="width:80%;position:relative;left: 250px;top: -150px;">
+          <center><h3>基本信息</h3>
+              <table class="table" style="text-align: center;">
+               <tr>
+                  <th class="th-info">用户名</th>
+                  <th class="th-info">{{username}}</th>
+                </tr>
+                <tr>
+                  <th class="th-info">密码</th>
+                  <th class="th-info">{{password}}</th>
+                </tr>
+                <tr>
+                  <th class="th-info">停车场编号</th>
+                  <th class="th-info">{{parkid}}</th>
+                <tr>
+                  <th class="th-info">停车场名称</th>
+                  <th class="th-info">{{parkname}}</th>
+                </tr>
+                <tr>
+                  <th class="th-info">总车位</th>
+                  <th class="th-info">{{parksize}}</th>
+                </tr>
+                <tr>
+                  <th class="th-info">收费标准</th>
+                  <th class="th-info">{{parkprice}}/小时</th>
+                </tr>
+                <tr>
+                    <th class="th-info">联系方式</th>
+                    <th class="th-info">{{parkphone}}</th>
+                <tr>
+                  <th class="th-info">地址</th>
+                  <th class="th-info">{{parkaddress}}</th>
+                </tr>
+              </table>
+          </center>
+      </div>
+  </div>
+
+
+  <div class="row-fluid" ng-show="alterinfo">
+    <h2>设置</h2>
+    <div style="width: 200px; position: relative;left: 20px;top:100px;text-align: center;" >
+        <a ng-click="Info()" class="list-group-item" >基本信息</a>
+        <a ng-click="AlterInfo()" class="list-group-item">更改信息</a>
+    </div>
+
+    <div style="width: 80%;position:relative;left: 250px;top: -150px;">
+     <center><h3>更改信息</h3>
+      <table class="table" style="text-align: center;">
+          <tr>
+            <th class="th-info">用户名</th>
+            <th class="th-info"><input id="username" type="text" autocomplete="off"  ng-model="username" ng-click="clearErrorInfo()"/></th>
+          </tr>
+          <tr>
+            <th class="th-info">密码</th>
+            <th class="th-info"><input id="password" type="password" autocomplete="off"  ng-model="password" ng-click="clearErrorInfo()"/></th>
+          </tr>
+          <tr>
+            <th class="th-info">停车场编号</th>
+            <th class="th-info">{{parkid}}</th>
+          </tr>
+          <tr>
+            <th class="th-info">停车场名称</th>
+            <th class="th-info"><input id="parkname" type="text" autocomplete="off"  ng-model="parkname" ng-click="clearErrorInfo()"/></th>
+          </tr>
+          <tr>
+            <th class="th-info">总车位</th>
+            <th class="th-info"><input id="parksize" type="text" autocomplete="off"  ng-model="parksize" ng-click="clearErrorInfo()"/></th>
+          </tr>
+          <tr>
+            <th class="th-info">收费标准</th>
+            <th class="th-info"><input id="parkprice" type="text" autocomplete="off" ng-model="parkprice" ng-click="clearErrorInfo()"/></th>
+          </tr>
+          <tr>
+              <th class="th-info">联系方式</th>
+              <th class="th-info"><input id="parkphone" type="text" autocomplete="off" ng-model="parkphone" ng-click="clearErrorInfo()"/></th>
+            </tr>
+          <tr>
+            <th class="th-info">地址</th>
+            <th class="th-info"><input id="parkaddress" type="text" autocomplete="off" ng-model="parkaddress" ng-click="clearErrorInfo()"/></th>
+          </tr>
+       
+    </table>
+    <button id="btnSub" type="submit" class="btn btn-success btn-lg" ng-click="save()">保存</button>
+      <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
+    </center>
+   </div>
+  </div>
+
+</div>
+</body>
+</html>
