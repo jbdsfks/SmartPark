@@ -1,0 +1,21 @@
+<%include head%>
+    <title><%= title %></title>
+</head>
+<body>
+<% if ( user ) { %>
+<h2>Hello {{username}} </h2>
+<a href="/api/cars/create">添加车辆</a>
+<a href="/signout">Sign out</a>
+<% } else { %>
+<a href="/signup">Signup</a>
+<a href="/signin">Signin</a>
+<% } %>
+<script type="text/javascript">
+    window.user = <%= user %>;
+    alert(window.user);
+</script>
+<script type="text/javascript" src="/users/users.client.module.js"></script>
+<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
+</body>
+
+</html>

@@ -10,11 +10,11 @@ var config = require('./config'),
     flash = require('connect-flash'),
     passport = require('passport');
 
-var login = require('../../routes/login');
-var register = require('../../routes/register');
-var parkindex = require('../../routes/parkindex');
-var highwayindex1 = require('../../routes/highwayindex1');
-var highwayindex2 = require('../../routes/highwayindex2');
+// var login = require('../../routes/login');
+// var register = require('../../routes/register');
+// var parkindex = require('../../routes/parkindex');
+// var highwayindex1 = require('../../routes/highwayindex1');
+// var highwayindex2 = require('../../routes/highwayindex2');
 
 module.exports = function() {
     var app = express();
@@ -42,14 +42,14 @@ module.exports = function() {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    app.use('/', login);
-    app.use('/register', register);
-    app.use('/parkindex', parkindex);
-    app.use('/highwayindex1', highwayindex1);
-    app.use('/highwayindex2', highwayindex2);
-    // require('../app/routes/index.server.route')(app);
-    // require('../app/routes/users.server.route')(app);
-    // require('../app/routes/car.server.route')(app);
+    // app.use('/', login);
+    // app.use('/register', register);
+    // app.use('/parkindex', parkindex);
+    // app.use('/highwayindex1', highwayindex1);
+    // app.use('/highwayindex2', highwayindex2);
+    require('../app/routes/index.server.route')(app);
+    require('../app/routes/users.server.route')(app);
+    require('../app/routes/car.server.route')(app);
 
     app.use(express.static('./public'));
 // app.use('/', indexRouter);

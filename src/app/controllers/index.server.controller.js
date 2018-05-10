@@ -1,31 +1,15 @@
-var Car = require('mongoose').model('Car');
-
-var findCarByOwnerID = function(ownerId){
-    console.log('1'+ownerId);
-    return Car.findOne({
-        owner:ownerId
-    }).populate('owner', 'username uid').exec(function (err, car) {
-        if (err){
-            return next(err);
-        }
-        if (!car)
-            return next(new Error('Failed to load '+req.user._id+'\'s car '));
-        console.log('2'+car);
-        return car;
-    });
-};
 
 
 exports.render = function(req, res) {
-    // if (req.session.lastVisit) {
-    //     console.log(req.session.lastVisit);
-    // }
-    //
-    // req.session.lastVisit = new Date();
+    if (req.session.lastVisit) {
+        console.log(req.session.lastVisit);
+    }
 
-    res.render('index', {
-        title: 'Hello World',
+    req.session.lastVisit = new Date();
+
+    res.render('login', {
+        title: '登 录',
         user: req.user ? req.user:null,
-        car: req.user ? findCarByOwnerID(req.user._id): null
+        // car: req.user ? findCarByOwnerID(req.user._id): null
     });
 };

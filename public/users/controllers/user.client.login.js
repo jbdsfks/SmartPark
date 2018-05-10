@@ -7,7 +7,7 @@
 * loginHighwayAdmin(username,password) ——收费站admin登录，成功返回true
 */
 
-app.controller ('loginController',function ($scope,$location) {
+app.controller ('loginController',['$scope','$routeParams','$location','users'],function ($scope,$location) {
 
     $scope.clickInfo = function () {
         $scope.errorInfo = '';
@@ -21,6 +21,8 @@ app.controller ('loginController',function ($scope,$location) {
     $scope.login=function(){
         if($scope.username){
             if($scope.password){
+
+
 
                 if($scope.usertype==$scope.user[0]){
                     //var f=loginPark(username,password)
@@ -48,9 +50,9 @@ app.controller ('loginController',function ($scope,$location) {
                 $scope.errorInfo = '密码不能为空！';
             }
         }else{
-           $scope.errorInfo = '用户名不能为空！';
+            $scope.errorInfo = '用户名不能为空！';
         }
     }
 
-    
+
 });

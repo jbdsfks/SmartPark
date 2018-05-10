@@ -1,6 +1,7 @@
 var passport= require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('mongoose').model('User');
+
 module.exports = function() {
     passport.use(new LocalStrategy({
         usernameField: 'uid',    // define the parameter in req.body that passport can use as username and password

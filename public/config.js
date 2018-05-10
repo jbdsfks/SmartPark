@@ -1,9 +1,11 @@
 
-var app=angular.module ( 'myapp',['ngRoute']);
+var ApplicationModuleName = 'myApp';
+var app=angular.module ( ApplicationModuleName,['ngRoute','users','ngResource']);
 
 app.config ( function ( $routeProvider,$locationProvider){
 
     $locationProvider.html5Mode ( true);
+    $locationProvider.hashPrefix('!');
     $routeProvider
     .when ( '/',{
         controller:'loginController',

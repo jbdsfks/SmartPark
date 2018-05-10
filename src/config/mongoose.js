@@ -5,6 +5,9 @@ module.exports = function() {
 
     require('../app/models/user.server.model');
     require('../app/models/car.server.model');
+    require('../app/models/park.server.model');
+    require('../app/models/parkingRecord.server.model');
+    require('../app/models/recharge.server.model');
 
     return db;
 };
