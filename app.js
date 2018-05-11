@@ -8,9 +8,6 @@ var db = mongoose();
 var app = express();
 
 
-app.set('views',path.join(__dirname,'views'));
-app.set('view engine', 'ejs');
-
 
 var passport = passport();
 module.exports = app;

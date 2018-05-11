@@ -1,13 +1,13 @@
 /*
 *
 * loginPark(username,password) ——停车场管理员登录，成功返回true
-* 
+*
 * loginHighwayWorker(username,password) ——收费站工作登人员登录，成功返回true
-* 
+*
 * loginHighwayAdmin(username,password) ——收费站admin登录，成功返回true
 */
 
-app.controller ('loginController',['$scope','$routeParams','$location','users'],function ($scope,$location) {
+angular.module('users').controller ('loginController',function ($scope, $routeParams, $location, Authentication, Users) {
 
     $scope.clickInfo = function () {
         $scope.errorInfo = '';
@@ -22,7 +22,9 @@ app.controller ('loginController',['$scope','$routeParams','$location','users'],
         if($scope.username){
             if($scope.password){
 
-
+                var User = new Users;
+                var user = User.findOneByUId($scope.username);
+                console.log(user);
 
                 if($scope.usertype==$scope.user[0]){
                     //var f=loginPark(username,password)
@@ -30,6 +32,7 @@ app.controller ('loginController',['$scope','$routeParams','$location','users'],
                         localStorage.user=$scope.username;
                         localStorage.cookie="username";
                         $location.path('/parkindex');
+                        window.location.reload();
                     }
                 }else if($scope.usertype==$scope.user[1]){
                     //var f=loginHighwayWorker(username,password);
@@ -37,6 +40,7 @@ app.controller ('loginController',['$scope','$routeParams','$location','users'],
                         localStorage.user=$scope.username;
                         localStorage.cookie="username";
                         $location.path('/highwayindex1');
+                        window.location.reload();
                     }
                 }else{
                     //var f=loginHighwayAdmin(username,password);
@@ -44,6 +48,7 @@ app.controller ('loginController',['$scope','$routeParams','$location','users'],
                         localStorage.user=$scope.username;
                         localStorage.cookie="username";
                         $location.path('/highwayindex2');
+                        window.location.reload();
                     }
                 }
             }else{

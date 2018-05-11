@@ -36,7 +36,9 @@ module.exports = function() {
     app.use(methodOverride());
 
     // console.log();
-
+    app.set('views',path.join(__dirname,'../app/views'));
+    app.set('view engine', 'ejs');
+    console.log(path.join(__dirname,'../app/views'));
 
     app.use(flash());
     app.use(passport.initialize());
@@ -50,8 +52,9 @@ module.exports = function() {
     require('../app/routes/index.server.route')(app);
     require('../app/routes/users.server.route')(app);
     require('../app/routes/car.server.route')(app);
+    require('../app/routes/articles.server.route.js')(app);
 
-    app.use(express.static('./public'));
+    // app.use(express.static('./public'));
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
@@ -72,6 +75,7 @@ module.exports = function() {
 
         // render the error page
         res.status(err.status || 500);
+        console.log(err);
         res.render('error');
     });
 

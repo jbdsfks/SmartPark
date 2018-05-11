@@ -4,7 +4,7 @@ var passport= require('passport'),
 
 module.exports = function() {
     passport.use(new LocalStrategy({
-        usernameField: 'uid',    // define the parameter in req.body that passport can use as username and password
+        usernameField: 'username',    // define the parameter in req.body that passport can use as username and password
         passwordField: 'password'
     },function(uid, password, done) {
         User.findOne({
