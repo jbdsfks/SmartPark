@@ -36,9 +36,8 @@ module.exports = function() {
     app.use(methodOverride());
 
     // console.log();
-    app.set('views',path.join(__dirname,'../app/views'));
+    app.set('views',path.join(__dirname,'../../public/views'));
     app.set('view engine', 'ejs');
-    console.log(path.join(__dirname,'../app/views'));
 
     app.use(flash());
     app.use(passport.initialize());
@@ -52,7 +51,8 @@ module.exports = function() {
     require('../app/routes/index.server.route')(app);
     require('../app/routes/users.server.route')(app);
     require('../app/routes/car.server.route')(app);
-    require('../app/routes/articles.server.route.js')(app);
+    require('../app/routes/articles.server.route')(app);
+    require('../app/routes/park.server.route')(app);
 
     // app.use(express.static('./public'));
 // app.use('/', indexRouter);

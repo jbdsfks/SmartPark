@@ -1,5 +1,5 @@
-<%include head%>
-    <script src="/controllers/register-controller.js"></script>
+<%include head.ejs%>
+    <!--<script src="/controllers/register-controller.js"></script>-->
     <style>
     input{
       width: 140px;
@@ -102,6 +102,10 @@
       </center>
       </div>
     </div>
-
+    <script type="text/javascript" src="/modules/users.client.module.js"></script>
+    <script type="text/javascript" src="/services/authentication.client.service.js"></script>
+    <script type="text/javascript" src="/services/user.client.service.js"></script>
+    <script type="text/javascript" src="/services/login.client.service.js"></script>
+    <script type="text/javascript" src="/controllers/login.client.controller.js"></script>
 </body>
 </html>

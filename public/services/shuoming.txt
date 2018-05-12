@@ -1,0 +1,1 @@
+这个目录里放关于$ngResoucre请求的api路由

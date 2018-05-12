@@ -1,0 +1,1 @@
+现在用的配置文件是application.js,不是config.js了

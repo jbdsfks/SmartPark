@@ -15,16 +15,17 @@ var Car = require('mongoose').model('Car');
 // };
 
 
-exports.render = function(req, res) {
-    // if (req.session.lastVisit) {
-    //     console.log(req.session.lastVisit);
-    // }
-    //
-    // req.session.lastVisit = new Date();
-
-    res.render('index', {
-        title: 'Hello World',
-        user: JSON.stringify(req.user)
+exports.login = function(req, res) {
+    res.render('login', {
+        title: '登 录',
+        user: req.user ? JSON.stringify(req.user) : null
+        // car: req.user ? findCarByOwnerID(req.user._id): null
+    });
+};
+exports.register = function(req, res) {
+    res.render('register', {
+        title: '注 册',
+        // user: JSON.stringify(req.user)
         // car: req.user ? findCarByOwnerID(req.user._id): null
     });
 };

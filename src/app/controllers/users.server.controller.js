@@ -78,6 +78,7 @@ exports.renderSignin = function(req, res, next) {
             messages: req.flash('error') || req.flash('info')
         });
     } else {
+        // console.log(req.user);
         return res.redirect('/');
     }
 };
@@ -124,4 +125,12 @@ exports.signup = function(req, res, next) {
 exports.signout = function(req, res) {
     req.logout();
     res.redirect('/');
+};
+exports.requiresLogin = function(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({
+            message: 'User is not logged in'
+        });
+    }
+    next();
 };

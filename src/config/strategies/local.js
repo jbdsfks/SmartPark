@@ -5,8 +5,10 @@ var passport= require('passport'),
 module.exports = function() {
     passport.use(new LocalStrategy({
         usernameField: 'username',    // define the parameter in req.body that passport can use as username and password
-        passwordField: 'password'
-    },function(uid, password, done) {
+        passwordField: 'password',
+        passReqToCallback: true
+    },function(req,uid, password, done) {
+        console.log(111);
         User.findOne({
             uid: uid
         }, function(err, user) {
@@ -23,6 +25,8 @@ module.exports = function() {
                     message: 'Invalid password'
                 });
             }
+            console.log('login success');
+            req.user = user;
             return done(null, user);
         });
     }));

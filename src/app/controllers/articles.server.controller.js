@@ -38,7 +38,7 @@ exports.list = function(req, res) {
 };
 
 exports.articleByID = function(req, res, next, id) {
-    Article.findOne(id).populate('creator', 'firstName lastName fullName').exec(function(err, article) {
+    Article.findById(id).populate('creator', 'firstName lastName fullName').exec(function(err, article) {
         if (err) return next(err);
         if (!article) return next(new Error('Failed to load article ' + id));
         req.article = article;
@@ -76,4 +76,14 @@ exports.delete = function(req, res) {
             res.json(article);
         }
     });
+};
+
+
+exports.hasAuthorization = function(req, res, next) {
+    if (req.article.creator.id !== req.user.id) {
+        return res.status(403).send({
+            message: 'User is not authorized'
+        });
+    }
+    next();
 };

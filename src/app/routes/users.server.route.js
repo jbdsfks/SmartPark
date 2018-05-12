@@ -17,12 +17,11 @@ module.exports = function(app) {
         .post(users.signup);
 
     app.route('/signin')
-        .get(users.renderSignin)
-        .post(passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/signin',
-            failureFlash: true
-        }));
+        .post(
+        passport.authenticate('local', { failureRedirect: '/' }),
+        function(req, res) {
+            res.redirect('/user/id/'+req.user.uid);
+        });
 
     app.get('/signout', users.signout);
 };

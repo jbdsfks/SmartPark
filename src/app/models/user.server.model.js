@@ -41,6 +41,13 @@ var UserSchema = new Schema({
         default: Date.now
     }
 });
+
+UserSchema.virtual('fullName').get(function() {
+    return this.username;
+}).set(function(fullName) {
+    this.username = fullName;
+});
+
 UserSchema.statics.findOneByUId = function (uid, callback) {
     console.log(uid);
     this.findOne({ uid: new RegExp(uid, 'g') }, callback);
