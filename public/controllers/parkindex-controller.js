@@ -23,7 +23,7 @@
 * 
 *
 * */
-app.controller('parkController',function($scope,$location){
+mainApplicationModule.controller('parkController',function($scope,$location){
 
 	/*
 	$scope.password=QuaryPassword($scope.username);

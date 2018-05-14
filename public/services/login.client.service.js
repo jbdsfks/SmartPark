@@ -1,6 +1,5 @@
 angular.module('users').factory('Login',['$resource', function ($resource) {
-    return $resource('signin',{
-
+    return $resource('signIn',{
     },{
         login:{
             method:'POST',

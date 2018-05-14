@@ -18,7 +18,8 @@ var Car = require('mongoose').model('Car');
 exports.login = function(req, res) {
     res.render('login', {
         title: '登 录',
-        user: req.user ? JSON.stringify(req.user) : null
+        user: req.user ? JSON.stringify(req.user) : null,
+        messages: req.flash('error') || req.flash('info')
         // car: req.user ? findCarByOwnerID(req.user._id): null
     });
 };

@@ -56,12 +56,12 @@
         用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
           <select ng-model="usertype">
               <option value="">
-              <option value="park-manager">停车场管理员
+              <option value="停车场管理员">停车场管理员
               <option value="highway-worker">收费站工作人员
               <option value="highway-admin">收费站admin
           </select><br>
         <div ng-switch="usertype">
-          <div ng-switch-when="park-manager">
+          <div ng-switch-when="停车场管理员">
             停车场名称：
               <input id="parkname" type="text" autocomplete="off"   ng-model="parkname" ng-click="clearErrorInfo()"/><br>
             总&nbsp;&nbsp;车&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;：
@@ -102,10 +102,7 @@
       </center>
       </div>
     </div>
-    <script type="text/javascript" src="/modules/users.client.module.js"></script>
-    <script type="text/javascript" src="/services/authentication.client.service.js"></script>
-    <script type="text/javascript" src="/services/user.client.service.js"></script>
-    <script type="text/javascript" src="/services/login.client.service.js"></script>
-    <script type="text/javascript" src="/controllers/login.client.controller.js"></script>
+    <script type="text/javascript" src="/controllers/register.client.controller.js"></script>
+    <script type="text/javascript" src="/services/register.client.service.js"></script>
 </body>
 </html>

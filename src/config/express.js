@@ -48,11 +48,12 @@ module.exports = function() {
     // app.use('/parkindex', parkindex);
     // app.use('/highwayindex1', highwayindex1);
     // app.use('/highwayindex2', highwayindex2);
-    require('../app/routes/index.server.route')(app);
+    // require('../app/routes/index.server.route')(app);
     require('../app/routes/users.server.route')(app);
     require('../app/routes/car.server.route')(app);
     require('../app/routes/articles.server.route')(app);
     require('../app/routes/park.server.route')(app);
+    require('../app/routes/parkingRecord.server.route')(app);
 
     // app.use(express.static('./public'));
 // app.use('/', indexRouter);

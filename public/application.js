@@ -7,11 +7,11 @@ mainApplicationModule.config ( function ( $routeProvider,$locationProvider){
     $locationProvider.html5Mode ( true);
     $locationProvider.hashPrefix('!');
     $routeProvider
-        .when ( '/',{
+        .when ( '/signin',{
             controller:'loginController',
             templateUrl:'login.ejs'
         })
-        .when ( '/register',{
+        .when ( '/signup',{
             controller:'registerController',
             templateUrl:'register.ejs'
         })

@@ -26,6 +26,9 @@ var UserSchema = new Schema({
         min:0,
         default:0.00
     },
+    type:{
+        type:String
+    },
     salt: {
         type: String
     },

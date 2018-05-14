@@ -73,28 +73,37 @@ var getErrorMessage = function(err) {
 };
 exports.renderSignin = function(req, res, next) {
     if (!req.user) {
-        res.render('signin', {
-            title: 'Sign-in Form',
-            messages: req.flash('error') || req.flash('info')
+        // console.log('asd');
+
+        res.render('login', {
+            title: '登 录',
+            messages: req.flash('error') || req.flash('info'),
+            user: req.user?req.user:null
         });
-    } else {
-        // console.log(req.user);
-        return res.redirect('/');
+    }else{
+
+        res.render('login', {
+            title: '登 录',
+            messages: req.flash('error') || req.flash('info'),
+            user: req.user?req.user:null
+        });
     }
 };
 exports.renderSignup = function(req, res, next) {
     if (!req.user) {
-        res.render('signup', {
+        res.render('register', {
             title: 'Sign-up Form',
             messages: req.flash('error')
         });
     } else {
-        return res.redirect('/');
+        return res.redirect('/signIn');
     }
 };
 exports.signup = function(req, res, next) {
     if (!req.user) {
+        console.log(req.body);
         var user = new User(req.body);
+        user.uid = req.body.username;
         console.log(user);
         var message = null;
         user.provider = 'local';
@@ -103,23 +112,14 @@ exports.signup = function(req, res, next) {
                 console.log(err);
                 var message = getErrorMessage(err);
                 req.flash('error', message);
-                return res.redirect('/signup');
+                return res.redirect('/register');
             }
-            console.log('save success');
-
-            req.login(user, function(err) {
-                if (err){
-                    console.log(err);
-                    return next(err);
-                }else {
-                    console.log('login success');
-                    return res.redirect('/');
-                }
-
-            });
+            var message = 'sign up success';
+            req.flash('info', message);
+            return res.redirect('/user/id/'+user.uid);
         });
     } else {
-        return res.redirect('/');
+        res.redirect('/user/id/'+req.user.uid);
     }
 };
 exports.signout = function(req, res) {

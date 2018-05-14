@@ -12,16 +12,26 @@ module.exports = function(app) {
         .delete(users.delete);
     app.param('userId', users.userByUid);
 
-    app.route('/signup')
+    app.route('/signUp')
         .get(users.renderSignup)
         .post(users.signup);
 
-    app.route('/signin')
+    app.route('/signIn')
+        .get(users.renderSignin)
         .post(
-        passport.authenticate('local', { failureRedirect: '/' }),
-        function(req, res) {
-            res.redirect('/user/id/'+req.user.uid);
+            function(req, res, next) {
+                passport.authenticate('local', function(err, user, info) {
+                    if (err) { return next(err); }
+                    if (!user) { return res.redirect('/signIn'); }
+                    req.login(user, function(err) {
+                        if (err) { return next(err); }
+                        return res.redirect('/user/id/'+req.user.uid);
+                    });
+                })(req, res, next);
         });
 
     app.get('/signout', users.signout);
+
+    // app.get('/', index.login);
+    // app.get('/register', index.register);
 };
