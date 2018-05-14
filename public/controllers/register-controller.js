@@ -9,22 +9,22 @@
 *   添加收费站Admin，成功返回true
 */
 
-var User = require('mongoose').model('User'),
-    Park = require('mongoose').model('Park');
+// var User = require('mongoose').model('User'),
+//     Park = require('mongoose').model('Park');
 
-function addParkManager(username,password,parkname,parksize,parkprice,parkphone,parkaddress){
-    var user = new User();
-    user.uid = username;
-    user.username = username;
-    user.password = password;
-    user.provider = 'local';
-    // user.save(function(err) {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    //     console.log('save success');
-    // });
-}
+// function addParkManager(username,password,parkname,parksize,parkprice,parkphone,parkaddress){
+//     // var user = new User();
+//     // user.uid = username;
+//     // user.username = username;
+//     // user.password = password;
+//     // user.provider = 'local';
+//     // user.save(function(err) {
+//     //     if (err) {
+//     //         console.log(err);
+//     //     }
+//     //     console.log('save success');
+//     // });
+// }
 
 
 app.controller ('registerController',function ($scope,$location) {
@@ -58,7 +58,7 @@ app.controller ('registerController',function ($scope,$location) {
                             if(parkprice){
                                 if(parkphone){
                                     if(parkaddress){
-                                        var f=addParkManager(username,password,parkname,parksize,parkprice,parkphone,parkaddress);
+                                        // var f=addParkManager(username,password,parkname,parksize,parkprice,parkphone,parkaddress);
                                         if(true){
                                             alert ('注册成功！');
                                             $location.path ('/');

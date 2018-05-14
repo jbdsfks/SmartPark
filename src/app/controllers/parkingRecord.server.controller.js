@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    Park = mongoose.model('Park');
+    ParkingRecord = mongoose.model('ParkingRecord');
 
 var getErrorMessage = function (err) {
     if (err.errors) {
@@ -12,76 +12,78 @@ var getErrorMessage = function (err) {
 };
 
 exports.create = function (req, res) {
-    var park = new Park(req.body);
-    park.owner = req.user;
-    park.save(function (err) {
+    var parkingRecord = new ParkingRecord(req.body);
+    parkingRecord.user = req.user;
+    parkingRecord.car = req.car;
+    parkingRecord.park = req.park;
+    parkingRecord.save(function (err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(park);
+            res.json(parkingRecord);
         }
     });
 };
 exports.list = function (req, res) {
-    Park.find().sort('-created').populate('owner', 'username uid').exec(function (err, parks) {
+    ParkingRecord.find().sort('-created').populate('user car park', 'username uid').exec(function (err, parkingRecords) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(parks);
+            res.json(parkingRecords);
         }
     });
 };
 
-exports.parkByID = function (req, res, next, pid) {
-    Park.findOne({
-        _id: pid
-    }).populate('owner', 'username uid').exec(function (err, park) {
+exports.parkingRecordById = function (req, res, next, PKRid) {
+    ParkingRecord.findOne({
+        _id: PKRid
+    }).populate('user car park', 'username uid').exec(function (err, parkingRecord) {
         if (err) return next(err);
-        if (!park) return next(new Error('Failed to load park ' + pid));
-        req.park = park;
+        if (!parkingRecord) return next(new Error('Failed to load parkingRecord ' + PKRid));
+        req.parkingRecord = parkingRecord;
         next();
     });
 };
 exports.read = function(req, res) {
-    res.json(req.park);
+    res.json(req.parkingRecord);
 };
 exports.update = function(req, res) {
-    var park = req.park;
-    // park 属性
-    park.save(function(err) {
+    var parkingRecord = req.parkingRecord;
+    // parkingRecord 属性
+    parkingRecord.save(function(err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(park);
+            res.json(parkingRecord);
         }
     });
 };
 
 exports.delete = function(req, res) {
-    var park = req.park;
-    park.remove(function(err) {
+    var parkingRecord = req.parkingRecord;
+    parkingRecord.remove(function(err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(park);
+            res.json(parkingRecord);
         }
     });
 };
-
-exports.index = function (req, res) {
-
-    res.render('parkindex', {
-        title: 'Hello World',
-    });
-};
+//
+// exports.index = function (req, res) {
+//
+//     res.render('parkindex', {
+//         title: 'Hello World',
+//     });
+// };
 
 exports.hasAuthorization = function (req, res, next) {
     if (req.car.owner.id !== req.user.id) {
