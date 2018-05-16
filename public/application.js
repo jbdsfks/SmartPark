@@ -1,6 +1,6 @@
 var mainApplicationModuleName = 'myApp';
 var mainApplicationModule = angular.module(mainApplicationModuleName,
-    ['ngResource','ngRoute', 'users']);
+    ['ngResource','ngRoute', 'users','parks']);
 
 mainApplicationModule.config ( function ( $routeProvider,$locationProvider){
 

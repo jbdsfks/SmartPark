@@ -1,6 +1,6 @@
 mainApplicationModule.controller('registerController',
-    ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'Register',
-        function ($scope, $routeParams, $location, Authentication, Users, Register) {
+    ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'Register', 'Parks',
+        function ($scope, $routeParams, $location, Authentication, Users, Register, Parks) {
 
             $scope.clickInfo = function () {
                 $scope.errorInfo = '';
@@ -22,7 +22,7 @@ mainApplicationModule.controller('registerController',
 
             $scope.station = ["沪宁高速南京收费站", "沪宁高速苏州新区收费站", "沪宁高速花桥收费站"];
 
-            $scope.register1 = function (username, password, confirmpassword, parkname, parksize, parkprice, parkphone, parkaddress) {
+            $scope.register1 = function (username, password, usertype, confirmpassword, parkname, parksize, parkprice, parkphone, parkaddress) {
                 if (username) {
                     if (password) {
                         if (confirmpassword && (confirmpassword === password)) {
@@ -31,19 +31,40 @@ mainApplicationModule.controller('registerController',
                                     if (parkprice) {
                                         if (parkphone) {
                                             if (parkaddress) {
-
                                                 Register.register({
-                                                    username: $scope.username,
-                                                    password: $scope.password,
-                                                    type: $scope.usertype
+                                                    username: username,
+                                                    password: password,
+                                                    type: usertype
                                                 }, function (response) {
                                                     console.log(response);
-                                                    if(response.uid){
-                                                        alert('注册成功！');
-                                                        $location.path('/signIn');
-                                                        window.location.reload();
+                                                    if (response.uid) {
+                                                        $scope.user = response;
+                                                        var park = new Parks({
+                                                            parkname: parkname,
+                                                            address: parkaddress,
+                                                            phone: parkphone,
+                                                            carnum: parksize,
+                                                            price: parkprice,
+                                                            owner: response._id
+                                                        });
+                                                        park.$save(function (response) {
+                                                            // console.log(response);
+                                                            if (response._id){
+                                                                alert('注册成功！');
+                                                                $location.path('signIn');
+                                                                window.location.reload();
+                                                            }else{
+                                                                $scope.errorInfo = '停车场已存在！';
+                                                                var user = new Users($scope.user);
+                                                                user.$remove(function () {
+                                                                    $location.path('signUp');
+                                                                });
+                                                            }
+                                                        });
+
                                                     } else {
-                                                        alert('注册失败！');
+                                                        $scope.errorInfo = '用户已存在！';
+                                                        // alert('注册失败！');
                                                     }
                                                 });
                                             } else {

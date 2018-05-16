@@ -112,7 +112,7 @@ exports.signup = function(req, res, next) {
                 console.log(err);
                 var message = getErrorMessage(err);
                 req.flash('error', message);
-                return res.redirect('/register');
+                return res.redirect('/signUp');
             }
             var message = 'sign up success';
             req.flash('info', message);

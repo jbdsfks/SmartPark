@@ -7,8 +7,9 @@ module.exports = function(app) {
 
     app.route('/api/parks')
         .get(park.list)
-        .post(users.requiresLogin, park.create);
-    app.route('/api/park/:parkId')
+        .post(park.create);
+
+    app.route('/api/parks/:parkId')
         .get(users.requiresLogin, park.read)
         .put(users.requiresLogin, park.update)
         .delete(users.requiresLogin, park.delete);

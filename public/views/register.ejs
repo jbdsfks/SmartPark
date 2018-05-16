@@ -51,7 +51,7 @@
           <input id="password" type="password"  ng-model="password" ng-click="clearErrorInfo()"/><br>
 
         确认密码&nbsp;&nbsp;&nbsp;&nbsp;：
-          <input id="confirmpassword" type="text" placeholder="请输入再次输入密码"  ng-model="confirmpassword" ng-click="clearErrorInfo()"/><br>
+          <input id="confirmpassword" type="password" placeholder="请输入再次输入密码"  ng-model="confirmpassword" ng-click="clearErrorInfo()"/><br>
         <hr>
         用户类型&nbsp;&nbsp;&nbsp;&nbsp;：
           <select ng-model="usertype">
@@ -73,7 +73,7 @@
             地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
               <input id="parkaddress" type="text"  ng-model="parkaddress" ng-click="clearErrorInfo()" /><br>
             <hr>
-            <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register1(username,password,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress)">注册</button>
+            <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register1(username,password,usertype,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress)">注册</button>
             <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
           </div>
           <div ng-switch-when="highway-worker">
@@ -104,5 +104,7 @@
     </div>
     <script type="text/javascript" src="/controllers/register.client.controller.js"></script>
     <script type="text/javascript" src="/services/register.client.service.js"></script>
+    <!--<script type="text/javascript" src="/controllers/register.client.controller.js"></script>-->
+    <script type="text/javascript" src="/services/park.client.service.js"></script>
 </body>
 </html>
