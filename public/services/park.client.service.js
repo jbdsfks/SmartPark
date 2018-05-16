@@ -4,9 +4,21 @@ angular.module('parks').factory('Parks',['$resource', function ($resource) {
     }, {
         update: {
             method: 'PUT'
+            param:{
+                parkid:'@parkid',
+                parkname:'@parkname',
+                parksize:'@carnum',
+                parkprice:'@price',
+                parkphone:'@phone',
+                parkaddress:'@address',
+                parkfree:'@free'
+            }
         },
-        delete:{
-            method: 'delete'
+        read: {
+            method: 'GET',
+            param:{
+                owner:'@parkowner'
+            }
         }
     });
 
