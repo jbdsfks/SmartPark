@@ -155,7 +155,7 @@ angular.module('park').controller ('parkController',
 						if($scope.parkprice){
 							if($scope.parkphone){
 								if($scope.parkaddress){
-									Users.alter({
+									Users.update({
 							            username:$scope.username,
 						                password:$scope.password
 							        },function (response) {
