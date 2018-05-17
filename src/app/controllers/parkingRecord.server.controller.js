@@ -38,18 +38,20 @@ exports.list = function (req, res) {
     });
 };
 
-exports.parkingRecordById = function (req, res, next, PKRid) {
+exports.parkingRecordByPId = function (req, res, next, pid) {
     ParkingRecord.findOne({
-        _id: PKRid
-    }).populate('user car park', 'username uid').exec(function (err, parkingRecord) {
+        park: pid
+    }).populate('user car park', 'username uid').exec(function (err, parkingRecords) {
         if (err) return next(err);
-        if (!parkingRecord) return next(new Error('Failed to load parkingRecord ' + PKRid));
-        req.parkingRecord = parkingRecord;
+        if (!parkingRecords) {
+            return next(new Error('Failed to load parkingRecord ' + pid));
+        }
+        req.parkingRecords = parkingRecords;
         next();
     });
 };
 exports.read = function(req, res) {
-    res.json(req.parkingRecord);
+    res.json(req.parkingRecords);
 };
 exports.update = function(req, res) {
     var parkingRecord = req.parkingRecord;

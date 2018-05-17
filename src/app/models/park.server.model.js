@@ -31,6 +31,11 @@ var ParkSchema = new Schema({
         default:0,
         required: true
     },
+    freenum:{
+        type: Number,
+        default:0,
+        required: true
+    },
     owner: {
         type: Schema.ObjectId,
         ref: 'User'

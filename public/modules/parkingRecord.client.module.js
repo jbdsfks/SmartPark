@@ -1,1 +1,1 @@
-angular.module('parkingRecord', []);
+angular.module('parkingRecords', []);

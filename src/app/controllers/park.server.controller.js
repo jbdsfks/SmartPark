@@ -46,6 +46,18 @@ exports.parkByID = function (req, res, next, pid) {
         next();
     });
 };
+
+exports.parkByOwnerId = function (req, res, next, ownerId) {
+    Park.findOne({
+        owner: ownerId
+    }).populate('owner', 'username uid').exec(function (err, park) {
+        if (err) return next(err);
+        if (!park) return next(new Error('Failed to load park ' + ownerId));
+        req.park = park;
+        next();
+    });
+};
+
 exports.read = function(req, res) {
     res.json(req.park);
 };

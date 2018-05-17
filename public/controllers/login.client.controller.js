@@ -29,10 +29,12 @@ angular.module('users').controller('loginController',
                             password: $scope.password
                         }, function (response) {
                             if (response.uid) {
-                                localStorage.user = response.username;
-                                localStorage.cookie = "username";
+                                // sessionStorage.user = response.username;
+                                // sessionStorage.cookie = "username";
 
                                 if ($scope.usertype === $scope.type[0] && response.type === $scope.usertype) {
+                                    sessionStorage.uid = response.uid;
+                                    // localStorage.cookie = "username";
                                     $location.path('park/index');
                                     window.location.reload();
                                 } else if ($scope.usertype === $scope.type[1] && response.type === $scope.usertype) {

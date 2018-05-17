@@ -1,6 +1,6 @@
 var mainApplicationModuleName = 'myApp';
 var mainApplicationModule = angular.module(mainApplicationModuleName,
-    ['ngResource','ngRoute', 'users','parks']);
+    ['ngResource','ngRoute', 'users','parks','parkingRecords']);
 
 mainApplicationModule.config ( function ( $routeProvider,$locationProvider){
 
@@ -15,7 +15,7 @@ mainApplicationModule.config ( function ( $routeProvider,$locationProvider){
             controller:'registerController',
             templateUrl:'register.ejs'
         })
-        .when ( '/parkindex',{
+        .when ( '/park/index',{
             controller:'parkController',
             templateUrl:'parkindex.ejs'
         })

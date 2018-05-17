@@ -1,25 +1,7 @@
-angular.module('parkingrecords').factory('Parkingrecords',['$resource', function ($resource) {
-    return $resource('/api/parkingRecord/:parkingRecordId',{
-    	parkingRecordId: '@PKRid'
+angular.module('parkingRecords').factory('ParkingRecords',['$resource', function ($resource) {
+    return $resource('/api/parkingRecord/:parkId',{
+    	parkId: '@park'
     },{
-        readBypid: {
-            method: 'GET',
-            param:{
-                parkid:'@pid'
-            }
-        },
-        readBycid: {
-            method: 'GET',
-            param:{
-                carid:'@carid'
-            }
-        },
-        readBytime: {
-            method: 'GET',
-            param:{
-                parkid:'@pid',
-                time:'@time'
-            }
-        }
+
     });
 }]);

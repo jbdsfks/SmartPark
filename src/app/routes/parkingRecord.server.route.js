@@ -9,9 +9,9 @@ module.exports = function(app) {
     app.route('/api/parkingRecords')
         .get(parkingRecord.list)
         .post(users.requiresLogin, parkingRecord.create);
-    app.route('/api/parkingRecord/:parkingRecordId')
-        .get(parkingRecord.read)
-        .put(parkingRecord.update)
-        .delete(parkingRecord.delete);
-    app.param('parkingRecordId', parkingRecord.parkingRecordById);
+    app.route('/api/parkingRecord/:parkId')
+        .get(parkingRecord.read);
+        // .put(parkingRecord.update)
+        // .delete(parkingRecord.delete);
+    app.param('parkId', parkingRecord.parkingRecordByPId);
 };

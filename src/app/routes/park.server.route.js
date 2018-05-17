@@ -9,9 +9,16 @@ module.exports = function(app) {
         .get(park.list)
         .post(park.create);
 
-    app.route('/api/parks/:parkId')
-        .get(users.requiresLogin, park.read)
-        .put(users.requiresLogin, park.update)
-        .delete(users.requiresLogin, park.delete);
-    app.param('parkId', park.parkByID);
+    app.route('/api/parks/:ownerId')
+        .get(park.read)
+        .put(park.update)
+        .delete(park.delete);
+    app.param('ownerId', park.parkByOwnerId);
+
+    // app.route('/api/parks/:parkId')
+    //     .get(park.read)
+    //     .put(park.update)
+    //     .delete(park.delete);
+    // app.param('parkId', park.parkByID);
+
 };
