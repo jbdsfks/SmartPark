@@ -10,10 +10,10 @@ var ParkingRecordSchema = new Schema({
         type:Schema.ObjectId,
         ref:'User'
     },
-    car:{
-        type:Schema.ObjectId,
-        ref:'Car'
-    },
+    // car:{
+    //     type:Schema.ObjectId,
+    //     ref:'Car'
+    // },
     park:{
         type:Schema.ObjectId,
         ref:'Park'

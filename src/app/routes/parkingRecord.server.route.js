@@ -6,9 +6,12 @@ module.exports = function(app) {
 
     // app.get('/park/index', park.index);
 
-    app.route('/api/parkingRecords')
+    app.route('/api/parkingRecords/:userId/:parkId')
         .get(parkingRecord.list)
-        .post(users.requiresLogin, parkingRecord.create);
+        .post(parkingRecord.create);
+    app.param('userId', users.userByUid);
+    app.param('parkId', park.parkByID);
+
     app.route('/api/parkingRecord/:parkId')
         .get(parkingRecord.read);
         // .put(parkingRecord.update)

@@ -52,7 +52,7 @@ UserSchema.virtual('fullName').get(function() {
 });
 
 UserSchema.statics.findOneByUId = function (uid, callback) {
-    console.log(uid);
+    // console.log(uid);
     this.findOne({ uid: new RegExp(uid, 'g') }, callback);
 };
 UserSchema.pre('save', function(next) {

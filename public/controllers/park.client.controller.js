@@ -28,7 +28,9 @@ mainApplicationModule.controller('parkController',
                 }, function (response) {
                     console.log(response);
                     if (response.uid) {
+                        $scope.user = response;
                         $scope.password = response.password;
+                        $scope.username = response.username;
                         Parks.get({
                             ownerId: response._id
                         }, function (response) {
@@ -40,9 +42,9 @@ mainApplicationModule.controller('parkController',
                                 $scope.parkphone = response.phone;
                                 $scope.parkprice = response.price;
                                 $scope.parkaddress = response.address;
-                                $scope.parkfree = response.free;
+                                $scope.parkfree = response.freenum;
 
-                                ParkingRecords.get({
+                                ParkingRecords.query({
                                     parkId: $scope.parkid
                                 }, function (response) {
                                     console.log(response);
@@ -95,11 +97,11 @@ mainApplicationModule.controller('parkController',
             };
 
             $scope.Record = function () {
-                init();
-                ParkRecords.readBypid({
-                    parkid: $scope.parkid
+                ParkingRecords.query({
+                    parkId: $scope.parkid
                 }, function (response) {
-                    if (response.PKRid) {
+                    console.log(response);
+                    if (response) {
                         var record = response;
                         func(record);
                         $scope.divList();
@@ -107,7 +109,19 @@ mainApplicationModule.controller('parkController',
                         $scope.parkingrecord = true;
                     }
                 });
-            }
+                // init();
+                // ParkRecords.readBypid({
+                //     parkid: $scope.parkid
+                // }, function (response) {
+                //     if (response.PKRid) {
+                //         var record = response;
+                //         func(record);
+                //         $scope.divList();
+                //         $scope.todayparking = false;
+                //         $scope.parkingrecord = true;
+                //     }
+                // });
+            };
 
             $scope.Quary = function () {
                 if ($scope.carid) {
@@ -131,20 +145,22 @@ mainApplicationModule.controller('parkController',
             };
 
             $scope.Setting = function () {
-                init();
+                // init();
                 $scope.todayparking = false;
                 $scope.setting = true;
             };
 
             $scope.Info = function () {
-                init();
+                // init();
                 $scope.todayparking = false;
                 $scope.setting = true;
+                $scope.alterinfo = false;
             };
 
             $scope.AlterInfo = function () {
-                init();
+                // init();
                 $scope.todayparking = false;
+                $scope.setting = false;
                 $scope.alterinfo = true;
             };
 
@@ -156,28 +172,28 @@ mainApplicationModule.controller('parkController',
                                 if ($scope.parkprice) {
                                     if ($scope.parkphone) {
                                         if ($scope.parkaddress) {
-                                            Users.update({
-                                                username: $scope.username,
-                                                password: $scope.password
+                                            var owner = $scope.user._id;
+                                            console.log(owner);
+                                            Parks.update({
+                                                _id: $scope.parkid,
+                                                parkname: $scope.parkname,
+                                                carnum: $scope.parksize,
+                                                price: $scope.parkprice,
+                                                phone: $scope.parkphone,
+                                                address: $scope.parkaddress,
+                                                freenum: $scope.parkfree,
+                                                owner: $scope.user._id
                                             }, function (response) {
-                                                if (response.uid) {
-                                                    Parks.update({
-                                                        parkid: $scope.parkid,
-                                                        parkname: $scope.parkname,
-                                                        parksize: $scope.parksize,
-                                                        parkprice: $scope.parkprice,
-                                                        parkphone: $scope.parkphone,
-                                                        parkaddress: $scope.parkaddress,
-                                                        parkfree: $scope.parkfree
-                                                    }, function (response) {
-                                                        if (response.parkId) {
-                                                            alert('更改成功！');
-                                                            init();
-                                                        } else {
-                                                            alert('更改失败！')
-                                                            init();
-                                                        }
-                                                    });
+                                                if (response._id) {
+                                                    alert('更改成功！');
+                                                    init();
+                                                    $scope.todayparking = false;
+                                                    $scope.setting = true;
+                                                } else {
+                                                    alert('更改失败！')
+                                                    init();
+                                                    $scope.todayparking = false;
+                                                    $scope.setting = true;
                                                 }
                                             });
 
@@ -213,7 +229,7 @@ mainApplicationModule.controller('parkController',
             $scope.logout = function () {
                 alert('注销成功！');
                 delete localStorage.cookie;
-                $location.path('/');
+                $location.path('/signIn');
                 window.location.reload();
             };
 

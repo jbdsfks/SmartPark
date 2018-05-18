@@ -41,7 +41,7 @@ exports.parkByID = function (req, res, next, pid) {
         _id: pid
     }).populate('owner', 'username uid').exec(function (err, park) {
         if (err) return next(err);
-        if (!park) return next(new Error('Failed to load park ' + pid));
+        // if (!park) return next(new Error('Failed to load park ' + pid));
         req.park = park;
         next();
     });
@@ -52,7 +52,7 @@ exports.parkByOwnerId = function (req, res, next, ownerId) {
         owner: ownerId
     }).populate('owner', 'username uid').exec(function (err, park) {
         if (err) return next(err);
-        if (!park) return next(new Error('Failed to load park ' + ownerId));
+        // if (!park) return next(new Error('Failed to load park ' + ownerId));
         req.park = park;
         next();
     });
@@ -63,9 +63,15 @@ exports.read = function(req, res) {
 };
 exports.update = function(req, res) {
     var park = req.park;
+    park.parkname = req.body.parkname;
+    park.price = req.body.price;
+    park.carnum = req.body.carnum;
+    park.address = req.body.address;
+    park.phone = req.body.phone;
     // park 属性
     park.save(function(err) {
         if (err) {
+            console.log(err);
             return res.status(400).send({
                 message: getErrorMessage(err)
             });

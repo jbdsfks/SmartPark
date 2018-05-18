@@ -22,6 +22,10 @@ mainApplicationModule.controller('registerController',
 
             $scope.station = ["沪宁高速南京收费站", "沪宁高速苏州新区收费站", "沪宁高速花桥收费站"];
 
+            $scope.doReflash = function () {
+                window.location.reload();
+            };
+
             $scope.register1 = function (username, password, usertype, confirmpassword, parkname, parksize, parkprice, parkphone, parkaddress) {
                 if (username) {
                     if (password) {
@@ -36,7 +40,7 @@ mainApplicationModule.controller('registerController',
                                                     password: password,
                                                     type: usertype
                                                 }, function (response) {
-                                                    console.log(response);
+                                                    // console.log(response);
                                                     if (response.uid) {
                                                         $scope.user = response;
                                                         var park = new Parks({
@@ -47,7 +51,7 @@ mainApplicationModule.controller('registerController',
                                                             price: parkprice,
                                                             owner: response._id
                                                         });
-                                                        park.$save(function (response) {
+                                                        park.$create(function (response) {
                                                             // console.log(response);
                                                             if (response._id){
                                                                 alert('注册成功！');

@@ -20,6 +20,10 @@ angular.module('users').controller('loginController',
 
             $scope.type = ["停车场管理员", "收费站工作人员", "收费站admin"];
 
+            $scope.doReflash = function () {
+              window.location.reload();
+            };
+
             $scope.login = function () {
                 if ($scope.username) {
                     if ($scope.password) {
@@ -33,27 +37,29 @@ angular.module('users').controller('loginController',
                                 // sessionStorage.cookie = "username";
 
                                 if ($scope.usertype === $scope.type[0] && response.type === $scope.usertype) {
+                                    // sessionStorage.user._id = response._id;
                                     sessionStorage.uid = response.uid;
+                                    // console.log(sessionStorage.user);
                                     // localStorage.cookie = "username";
                                     $location.path('park/index');
                                     window.location.reload();
-                                } else if ($scope.usertype === $scope.type[1] && response.type === $scope.usertype) {
-                                    //var f=loginHighwayWorker(username,password);
-                                    if (true) {
-                                        localStorage.user = $scope.username;
-                                        localStorage.cookie = "username";
-                                        $location.path('/highwayindex1');
-                                        window.location.reload();
-                                    }
-                                } else if($scope.usertype === $scope.type[2] && response.type === $scope.usertype){
-                                    //var f=loginHighwayAdmin(username,password);
-                                    if (true) {
-                                        localStorage.user = $scope.username;
-                                        localStorage.cookie = "username";
-                                        $location.path('/highwayindex2');
-                                        window.location.reload();
-                                    }
-                                }else{
+                                // } else if ($scope.usertype === $scope.type[1] && response.type === $scope.usertype) {
+                                //     //var f=loginHighwayWorker(username,password);
+                                //     if (true) {
+                                //         localStorage.user = $scope.username;
+                                //         localStorage.cookie = "username";
+                                //         $location.path('/highwayindex1');
+                                //         window.location.reload();
+                                //     }
+                                // } else if ($scope.usertype === $scope.type[2] && response.type === $scope.usertype) {
+                                //     //var f=loginHighwayAdmin(username,password);
+                                //     if (true) {
+                                //         localStorage.user = $scope.username;
+                                //         localStorage.cookie = "username";
+                                //         $location.path('/highwayindex2');
+                                //         window.location.reload();
+                                //     }
+                                } else {
                                     $scope.errorInfo = '此身份下用户不存在！';
                                 }
                             } else {

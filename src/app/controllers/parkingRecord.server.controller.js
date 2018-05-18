@@ -13,9 +13,9 @@ var getErrorMessage = function (err) {
 
 exports.create = function (req, res) {
     var parkingRecord = new ParkingRecord(req.body);
-    parkingRecord.user = req.user;
-    parkingRecord.car = req.car;
-    parkingRecord.park = req.park;
+    // parkingRecord.user = req.user;
+    // parkingRecord.car = req.car;
+    // parkingRecord.park = req.park;
     parkingRecord.save(function (err) {
         if (err) {
             return res.status(400).send({
@@ -27,7 +27,9 @@ exports.create = function (req, res) {
     });
 };
 exports.list = function (req, res) {
-    ParkingRecord.find().sort('-created').populate('user car park', 'username uid').exec(function (err, parkingRecords) {
+    ParkingRecord.find({
+        user: req.user._id
+    }).sort('-created').populate('user park', 'username uid').exec(function (err, parkingRecords) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -39,24 +41,28 @@ exports.list = function (req, res) {
 };
 
 exports.parkingRecordByPId = function (req, res, next, pid) {
-    ParkingRecord.findOne({
+    ParkingRecord.find({
         park: pid
-    }).populate('user car park', 'username uid').exec(function (err, parkingRecords) {
+    }).populate('user park', 'username uid').exec(function (err, parkingRecords) {
         if (err) return next(err);
         if (!parkingRecords) {
-            return next(new Error('Failed to load parkingRecord ' + pid));
+            req.parkingRecord = JSON.stringify();
+            next();
+        } else {
+            req.parkingRecord = parkingRecords;
+            next();
         }
-        req.parkingRecords = parkingRecords;
-        next();
+
     });
 };
-exports.read = function(req, res) {
-    res.json(req.parkingRecords);
+exports.read = function (req, res) {
+    // console.log(req.parkingRecords);
+    res.json(req.parkingRecord);
 };
-exports.update = function(req, res) {
+exports.update = function (req, res) {
     var parkingRecord = req.parkingRecord;
     // parkingRecord 属性
-    parkingRecord.save(function(err) {
+    parkingRecord.save(function (err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -67,9 +73,9 @@ exports.update = function(req, res) {
     });
 };
 
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
     var parkingRecord = req.parkingRecord;
-    parkingRecord.remove(function(err) {
+    parkingRecord.remove(function (err) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -87,11 +93,11 @@ exports.delete = function(req, res) {
 //     });
 // };
 
-exports.hasAuthorization = function (req, res, next) {
-    if (req.car.owner.id !== req.user.id) {
-        return res.status(403).send({
-            message: 'User is not authorized'
-        });
-    }
-    next();
-};
+// exports.hasAuthorization = function (req, res, next) {
+//     if (req.car.owner.id !== req.user.id) {
+//         return res.status(403).send({
+//             message: 'User is not authorized'
+//         });
+//     }
+//     next();
+// };

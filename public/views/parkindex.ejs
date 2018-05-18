@@ -55,22 +55,23 @@
                 <tr>
                   <th>Id</th>
                   <th>Username</th>
-                  <th>Carid</th>
+                  <!--<th>Carid</th>-->
                   <th>Intime</th>
                   <th>Outtime</th>
-                  <th>Duration</th>
+                  <!--<th>Duration</th>-->
                   <th>Pay</th>
                 </tr>
              </thead>
               <tbody>
                 <tr ng-repeat="obj in list">
-                  <td>{{obj.id}}</td>
-                  <td>{{obj.username}}</td>
-                  <td>{{obj.carid}}</td>
-                  <td>{{obj.intime}}</td>
-                  <td>{{obj.outtime}}</td>
-                  <td>{{obj.duration}}</td>
-                  <td>{{obj.pay}}</td>
+                    <!--<td>{{obj}}</td>-->
+                    <td>{{obj._id}}</td>
+                    <td>{{obj.user.username}}</td>
+                    <!--<td>{{obj.carid}}</td>-->
+                    <td>{{obj.carin}}</td>
+                    <td>{{obj.carout}}</td>
+                    <!--<td>{{obj.duration}}</td>-->
+                    <td>{{obj.pay}}</td>
                 </tr>
               </tbody>
             </table>
@@ -96,28 +97,29 @@
     <center>
         <div style="position: relative;top:-50px;width: 94%;">
             <table class="table table-striped">
-              <thead>
+                <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Username</th>
-                  <th>Carid</th>
-                  <th>Intime</th>
-                  <th>Outtime</th>
-                  <th>Duration</th>
-                  <th>Pay</th>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <!--<th>Carid</th>-->
+                    <th>Intime</th>
+                    <th>Outtime</th>
+                    <!--<th>Duration</th>-->
+                    <th>Pay</th>
                 </tr>
-             </thead>
-              <tbody>
-                <tr  ng-repeat="obj in list">
-                  <td>{{obj.id}}</td>
-                  <td>{{obj.username}}</td>
-                  <td>{{obj.carid}}</td>
-                  <td>{{obj.intime}}</td>
-                  <td>{{obj.outtime}}</td>
-                  <td>{{obj.duration}}</td>
-                  <td>{{obj.pay}}</td>
+                </thead>
+                <tbody>
+                <tr ng-repeat="obj in list">
+                    <!--<td>{{obj}}</td>-->
+                    <td>{{obj._id}}</td>
+                    <td>{{obj.user.username}}</td>
+                    <!--<td>{{obj.carid}}</td>-->
+                    <td>{{obj.carin}}</td>
+                    <td>{{obj.carout}}</td>
+                    <!--<td>{{obj.duration}}</td>-->
+                    <td>{{obj.pay}}</td>
                 </tr>
-              </tbody>
+                </tbody>
             </table>
             <div class="page" style="color: blue;">共<span ng-bind="data.length"></span>条记录
               <span ng-click="divList(0)" class="link">首页</span>
@@ -141,30 +143,31 @@
 
     <center>
       <div style="position: relative;top:-50px;width: 94%;">
-        <table class="table table-striped">
-          <thead>
-            <tr>  
-              <th>Id</th>
-              <th>Username</th>
-              <th>Carid</th>
-              <th>Intime</th>
-              <th>Outtime</th>
-              <th>Duration</th>
-              <th>Pay</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr  ng-repeat="obj in list">
-              <td>{{obj.id}}</td>
-              <td>{{obj.username}}</td>
-              <td>{{obj.carid}}</td>
-              <td>{{obj.intime}}</td>
-              <td>{{obj.outtime}}</td>
-              <td>{{obj.duration}}</td>
-              <td>{{obj.pay}}</td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Username</th>
+                  <!--<th>Carid</th>-->
+                  <th>Intime</th>
+                  <th>Outtime</th>
+                  <!--<th>Duration</th>-->
+                  <th>Pay</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="obj in list">
+                  <!--<td>{{obj}}</td>-->
+                  <td>{{obj._id}}</td>
+                  <td>{{obj.user.username}}</td>
+                  <!--<td>{{obj.carid}}</td>-->
+                  <td>{{obj.carin}}</td>
+                  <td>{{obj.carout}}</td>
+                  <!--<td>{{obj.duration}}</td>-->
+                  <td>{{obj.pay}}</td>
+              </tr>
+              </tbody>
+          </table>
         <div class="page" style="color: blue;">共<span ng-bind="data.length"></span>条记录
           <span ng-click="divList(0)" class="link">首页</span>
           <span ng-click="divList(-1)" ng-show="currentPage > 0" class="link">上一页</span>
@@ -230,14 +233,14 @@
     <div style="width: 80%;position:relative;left: 250px;top: -150px;">
      <center><h3>更改信息</h3>
       <table class="table" style="text-align: center;">
-          <tr>
-            <th class="th-info">用户名</th>
-            <th class="th-info"><input id="username" type="text" autocomplete="off"  ng-model="username" ng-click="clearErrorInfo()"/></th>
-          </tr>
-          <tr>
-            <th class="th-info">密码</th>
-            <th class="th-info"><input id="password" type="password" autocomplete="off"  ng-model="password" ng-click="clearErrorInfo()"/></th>
-          </tr>
+          <!--<tr>-->
+            <!--<th class="th-info">用户名</th>-->
+            <!--<th class="th-info"><input id="username" type="text" autocomplete="off"  ng-model="username" ng-click="clearErrorInfo()"/></th>-->
+          <!--</tr>-->
+          <!--<tr>-->
+            <!--<th class="th-info">密码</th>-->
+            <!--<th class="th-info"><input id="password" type="password" autocomplete="off"  ng-model="password" ng-click="clearErrorInfo()"/></th>-->
+          <!--</tr>-->
           <tr>
             <th class="th-info">停车场编号</th>
             <th class="th-info">{{parkid}}</th>

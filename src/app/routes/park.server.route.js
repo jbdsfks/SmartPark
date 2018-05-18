@@ -11,6 +11,7 @@ module.exports = function(app) {
 
     app.route('/api/parks/:ownerId')
         .get(park.read)
+        .post(park.create)
         .put(park.update)
         .delete(park.delete);
     app.param('ownerId', park.parkByOwnerId);
