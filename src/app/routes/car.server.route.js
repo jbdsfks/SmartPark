@@ -3,15 +3,15 @@ var users = require('../../app/controllers/users.server.controller'),
 
 module.exports = function (app) {
 
-    app.route('/api/cars/create')
-        .get(cars.renderCreateCar)
-        .post(users.requiresLogin, cars.create);
 
-    app.route('/api/cars')
-        .get(cars.list);
+    app.route('/api/cars/user/:userId')
+        .get(cars.list)
+        .post(cars.create);
+    app.param('userId',users.userByUid);
 
-    app.route('/api/cars/:carId')
+    app.route('/api/cars/car/:carId')
         .get(cars.read)
-        .delete(users.requiresLogin, cars.hasAuthorization, cars.delete);
+        .put(cars.update)
+        .delete(cars.delete);
     app.param('carId', cars.carByID);
 };

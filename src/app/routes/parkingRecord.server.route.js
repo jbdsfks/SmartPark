@@ -4,15 +4,17 @@ var parkingRecord = require('../controllers/parkingRecord.server.controller'),
 
 module.exports = function(app) {
 
-    // app.get('/park/index', park.index);
+    app.route('/api/parkingRecord/:recId')
+        .get(parkingRecord.read)
+        .put(parkingRecord.update);
+    app.param('recId', parkingRecord.getParkingRecordByRecId);
 
-    app.route('/api/parkingRecords/:userId/:parkId')
-        .get(parkingRecord.list)
+    app.route('/api/parkingRecords/user/:userId')
+        .get(parkingRecord.listByUid)
         .post(parkingRecord.create);
     app.param('userId', users.userByUid);
-    app.param('parkId', park.parkByID);
 
-    app.route('/api/parkingRecord/:parkId')
+    app.route('/api/parkingRecords/park/:parkId')
         .get(parkingRecord.read);
         // .put(parkingRecord.update)
         // .delete(parkingRecord.delete);

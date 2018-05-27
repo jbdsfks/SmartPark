@@ -25,6 +25,7 @@ exports.read = function(req, res) {
     res.json(req.user);
 };
 exports.userByUid = function(req, res, next, uid){
+    // console.log(uid);
     User.findOneByUId(uid, function(err, user) {
         if (err) {
             return next(err);
@@ -34,10 +35,19 @@ exports.userByUid = function(req, res, next, uid){
         }
     });
 };
-exports.update = function(req, res, next) {
-    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+exports.update = function(req, res) {
+    var user = req.user;
+    user.username = req.body.username;
+    user.password = User.hashPassword(req.body.password);
+    user.email = req.body.email;
+    user.type = req.body.type;
+    // park 属性
+    user.save(function(err) {
         if (err) {
-            return next(err);
+            console.log(err);
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
         } else {
             res.json(user);
         }
@@ -116,10 +126,10 @@ exports.signup = function(req, res, next) {
             }
             var message = 'sign up success';
             req.flash('info', message);
-            return res.redirect('/user/id/'+user.uid);
+            return res.redirect('/api/user/'+user.uid);
         });
     } else {
-        res.redirect('/user/id/'+req.user.uid);
+        res.redirect('/api/user/'+req.user.uid);
     }
 };
 exports.signout = function(req, res) {

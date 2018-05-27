@@ -8,7 +8,8 @@ var RechargeSchema = new Schema({
     },
     user:{
         type:Schema.ObjectId,
-        ref:'User'
+        ref:'User',
+        required:true
     },
     money:{
         type:Number,

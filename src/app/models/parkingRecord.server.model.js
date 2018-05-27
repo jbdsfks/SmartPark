@@ -2,33 +2,34 @@ var mongooose = require('mongoose'),
     Schema = mongooose.Schema;
 
 var ParkingRecordSchema = new Schema({
-    created:{
-        type:Date,
-        default:new Date
+    created: {
+        type: Date,
+        default: new Date
     },
-    user:{
-        type:Schema.ObjectId,
-        ref:'User'
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
     },
-    // car:{
-    //     type:Schema.ObjectId,
-    //     ref:'Car'
-    // },
-    park:{
-        type:Schema.ObjectId,
-        ref:'Park'
+    car: {
+        type: Schema.ObjectId,
+        ref: 'Car'
     },
-    pay:{
-        type:Number,
-        required:true
+    park: {
+        type: Schema.ObjectId,
+        ref: 'Park'
     },
-    carin:{
-        type:String,
-        default:''
+    pay: {
+        type: Number,
+        required: true,
+        default: 0
     },
-    carout:{
-        type:String,
-        default:''
+    carin: {
+        type: String,
+        default: ''
+    },
+    carout: {
+        type: String,
+        default: ''
     }
 });
 

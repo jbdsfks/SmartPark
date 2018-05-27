@@ -9,7 +9,7 @@ module.exports = function() {
     require('../app/models/parkingRecord.server.model');
     require('../app/models/recharge.server.model');
 
-    require('../app/models/article.server.model');
+
 
     return db;
 };

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    ParkingRecord = mongoose.model('ParkingRecord');
+    ParkingRecord = mongoose.model('ParkingRecord'),
+    Park = mongoose.model('Park');
 
 var getErrorMessage = function (err) {
     if (err.errors) {
@@ -12,24 +13,46 @@ var getErrorMessage = function (err) {
 };
 
 exports.create = function (req, res) {
-    var parkingRecord = new ParkingRecord(req.body);
-    // parkingRecord.user = req.user;
-    // parkingRecord.car = req.car;
-    // parkingRecord.park = req.park;
-    parkingRecord.save(function (err) {
+    var parkingRecord = new ParkingRecord();
+    parkingRecord.user = req.user._id;
+    parkingRecord.car = req.body.car;
+    parkingRecord.park = req.body.park;
+    parkingRecord.carin = req.body.carin;
+
+    Park.findOne({
+        _id: parkingRecord.park
+    }).exec(function (err, park) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(parkingRecord);
+            park.freenum = park.freenum - 1;
+            park.save(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: getErrorMessage(err)
+                    });
+                } else {
+                    parkingRecord.save(function (err) {
+                        if (err) {
+                            return res.status(400).send({
+                                message: getErrorMessage(err)
+                            });
+                        } else {
+                            res.json(parkingRecord);
+                        }
+                    });
+                }
+            })
         }
     });
 };
-exports.list = function (req, res) {
+
+exports.listByUid = function (req, res) {
     ParkingRecord.find({
         user: req.user._id
-    }).sort('-created').populate('user park', 'username uid').exec(function (err, parkingRecords) {
+    }).sort('-created').populate('user park car', 'username uid').exec(function (err, parkingRecords) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -43,7 +66,7 @@ exports.list = function (req, res) {
 exports.parkingRecordByPId = function (req, res, next, pid) {
     ParkingRecord.find({
         park: pid
-    }).populate('user park', 'username uid').exec(function (err, parkingRecords) {
+    }).populate('user park car', 'username uid').exec(function (err, parkingRecords) {
         if (err) return next(err);
         if (!parkingRecords) {
             req.parkingRecord = JSON.stringify();
@@ -61,16 +84,61 @@ exports.read = function (req, res) {
 };
 exports.update = function (req, res) {
     var parkingRecord = req.parkingRecord;
-    // parkingRecord 属性
-    parkingRecord.save(function (err) {
+    parkingRecord.carout = req.body.carout;
+    var time_in = new Date(parkingRecord.carin),
+        time_out = new Date(parkingRecord.carout);
+    var hours = Math.ceil((time_out - time_in) / (3600 * 1000));
+
+    Park.findOne({
+        _id: parkingRecord.park
+    }).exec(function (err, park) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.json(parkingRecord);
+
+            park.freenum = park.freenum + 1;
+            var pay = hours * park.price;
+            parkingRecord.pay = pay;
+
+            park.save(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: getErrorMessage(err)
+                    });
+                } else {
+                    parkingRecord.save(function (err) {
+                        if (err) {
+                            return res.status(400).send({
+                                message: getErrorMessage(err)
+                            });
+                        } else {
+                            res.json(parkingRecord);
+                        }
+                    });
+                }
+            });
+
+
         }
     });
+    // parkingRecord 属性
+};
+
+exports.getParkingRecordByRecId = function (req, res, next, recId) {
+
+    ParkingRecord.findOne({
+        _id: recId
+    }).exec(function (err, parkingRecord) {
+        if (err) {
+            next(err)
+        } else {
+            req.parkingRecord = parkingRecord;
+            next()
+        }
+    });
+
 };
 
 exports.delete = function (req, res) {

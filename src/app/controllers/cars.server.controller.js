@@ -38,9 +38,24 @@ exports.create = function (req, res) {
        }
     });
 };
-
+exports.update = function(req, res) {
+    var car = req.car;
+    car.brand = req.body.brand;
+    car.color = req.body.color;
+    car.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.json(car);
+        }
+    });
+};
 exports.list = function (req, res) {
-    Car.find().sort('-created').populate('owner', 'username uid').exec(function (err, cars) {
+    Car.find({
+        owner:req.user._id
+    }).sort('-created').populate('owner', 'username uid').exec(function (err, cars) {
        if (err){
            return res.status(400).send({
                message: getErrorMessage(err)
@@ -84,7 +99,7 @@ exports.carByID = function (req, res, next, id) {
 };
 
 exports.read = function (req, res) {
-    console.log(req.car);
+    // console.log(req.car);
     res.json(req.car);
 };
 

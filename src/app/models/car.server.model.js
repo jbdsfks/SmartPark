@@ -6,14 +6,6 @@ var CarShema = new Schema({
         type: Date,
         default: Date.now()
     },
-    type:{
-        type: String,
-        default:''
-    },
-    model:{
-        type: String,
-        default:''
-    },
     color: {
         type:String,
         default:''

@@ -1,5 +1,5 @@
 angular.module('parkingRecords').factory('ParkingRecords',['$resource', function ($resource) {
-    return $resource('/api/parkingRecord/:parkId',{
+    return $resource('/api/parkingRecords/park/:parkId',{
     	parkId: '@park'
     },{
 

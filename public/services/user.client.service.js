@@ -1,5 +1,5 @@
 angular.module('users').factory('Users',['$resource', function ($resource) {
-    return $resource('/user/id/:userId/', {
+    return $resource('/api/user/:userId/', {
         userId: '@uid'
     }, {
         update: {

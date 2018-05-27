@@ -2,11 +2,11 @@ var users = require('../../app/controllers/users.server.controller'),
     passport = require('passport');
 module.exports = function(app) {
 
-    app.route('/user/create')
+    app.route('/api/users')
         .post(users.create)
         .get(users.list);
 
-    app.route('/user/id/:userId')
+    app.route('/api/user/:userId')
         .get(users.read)
         .put(users.update)
         .delete(users.delete);
@@ -25,7 +25,7 @@ module.exports = function(app) {
                     if (!user) { return res.redirect('/signIn'); }
                     req.login(user, function(err) {
                         if (err) { return next(err); }
-                        return res.redirect('/user/id/'+req.user.uid);
+                        return res.redirect('/api/user/'+req.user.uid);
                     });
                 })(req, res, next);
         });
