@@ -72,8 +72,12 @@
               <input id="parkphone" type="text"  ng-model="parkphone" ng-click="clearErrorInfo()"/><br>
             地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;&nbsp;：
               <input id="parkaddress" type="text"  ng-model="parkaddress" ng-click="clearErrorInfo()" /><br>
+              坐&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;X&nbsp;&nbsp;&nbsp;：
+              <input id="geoX" type="text"  ng-model="geoX" ng-click="clearErrorInfo()" /><br>
+              坐&nbsp;&nbsp;&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;Y&nbsp;&nbsp;&nbsp;：
+              <input id="geoY" type="text"  ng-model="geoY" ng-click="clearErrorInfo()" /><br>
             <hr>
-            <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register1(username,password,usertype,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress)">注册</button>
+            <button id="btnSub" type="submit" class="btn btn-success btn-lg btn-register" ng-click="register1(username,password,usertype,confirmpassword,parkname,parksize,parkprice,parkphone,parkaddress,geoX,geoY)">注册</button>
             <p class="text-danger" style="color:red;" ng-bind="errorInfo"></p>
           </div>
           <div ng-switch-when="highway-worker">

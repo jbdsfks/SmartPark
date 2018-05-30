@@ -6,8 +6,7 @@ module.exports = function(app) {
     app.get('/park/index', park.index);
 
     app.route('/api/parks')
-        .get(park.list)
-        .post(park.create);
+        .get(park.list);
 
     app.route('/api/parks/:ownerId')
         .get(park.read)
