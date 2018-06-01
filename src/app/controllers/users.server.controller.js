@@ -38,7 +38,6 @@ exports.userByUid = function(req, res, next, uid){
 exports.update = function(req, res) {
     var user = req.user;
     user.username = req.body.username;
-    user.password = User.hashPassword(req.body.password);
     user.email = req.body.email;
     user.type = req.body.type;
     // park 属性
@@ -53,15 +52,27 @@ exports.update = function(req, res) {
         }
     });
 };
-exports.delete = function(req, res, next) {
-    req.user.remove(function(err) {
+exports.delete = function(req, res) {
+    var user = req.user;
+    user.remove(function(err) {
         if (err) {
-            return next(err);
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
         } else {
-            res.json(req.user);
+            res.json(user);
         }
-    })
+    });
 };
+// exports.delete = function(req, res, next) {
+//     req.user.remove(function(err) {
+//         if (err) {
+//             return next(err);
+//         } else {
+//             res.json(req.user);
+//         }
+//     })
+// };
 var getErrorMessage = function(err) {
     var message = '';
     if (err.code) {
@@ -110,27 +121,23 @@ exports.renderSignup = function(req, res, next) {
     }
 };
 exports.signup = function(req, res, next) {
-    if (!req.user) {
-        console.log(req.body);
-        var user = new User(req.body);
-        user.uid = req.body.username;
-        console.log(user);
-        var message = null;
-        user.provider = 'local';
-        user.save(function(err) {
-            if (err) {
-                console.log(err);
-                var message = getErrorMessage(err);
-                req.flash('error', message);
-                return res.redirect('/signUp');
-            }
-            var message = 'sign up success';
-            req.flash('info', message);
-            return res.redirect('/api/user/'+user.uid);
-        });
-    } else {
-        res.redirect('/api/user/'+req.user.uid);
-    }
+    console.log(req.body);
+    var user = new User(req.body);
+    user.uid = req.body.username;
+    console.log(user);
+    var message = null;
+    user.provider = 'local';
+    user.save(function(err) {
+        if (err) {
+            console.log(err);
+            var message   = getErrorMessage(err);
+            req.flash('error', message);
+            return res.redirect('/signUp');
+        }
+        var message   = 'sign up success';
+        req.flash('info', message);
+        return res.redirect('/api/user/'+user.uid);
+    });
 };
 exports.signout = function(req, res) {
     req.logout();
