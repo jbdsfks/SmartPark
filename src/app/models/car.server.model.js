@@ -6,6 +6,10 @@ var CarShema = new Schema({
         type: Date,
         default: Date.now()
     },
+    carId:{
+        type:String,
+        required:true
+    },
     color: {
         type:String,
         default:''

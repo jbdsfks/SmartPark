@@ -15,6 +15,9 @@ mainApplicationModule.controller('registerController',
             $scope.parkprice = '';
             $scope.parkphone = '';
             $scope.parkaddress = '';
+            $scope.geoX = '';
+            $scope.geoY = '';
+
             $scope.stationname = '';
             $scope.stationname2 = '';
             $scope.stationphone = '';
@@ -26,7 +29,7 @@ mainApplicationModule.controller('registerController',
                 window.location.reload();
             };
 
-            $scope.register1 = function (username, password, usertype, confirmpassword, parkname, parksize, parkprice, parkphone, parkaddress) {
+            $scope.register1 = function (username, password, usertype, confirmpassword, parkname, parksize, parkprice, parkphone, parkaddress, geoX, geoY) {
                 if (username) {
                     if (password) {
                         if (confirmpassword && (confirmpassword === password)) {
@@ -35,42 +38,52 @@ mainApplicationModule.controller('registerController',
                                     if (parkprice) {
                                         if (parkphone) {
                                             if (parkaddress) {
-                                                Register.register({
-                                                    username: username,
-                                                    password: password,
-                                                    type: usertype
-                                                }, function (response) {
-                                                    // console.log(response);
-                                                    if (response.uid) {
-                                                        $scope.user = response;
-                                                        var park = new Parks({
-                                                            parkname: parkname,
-                                                            address: parkaddress,
-                                                            phone: parkphone,
-                                                            carnum: parksize,
-                                                            price: parkprice,
-                                                            owner: response._id
-                                                        });
-                                                        park.$create(function (response) {
+                                                if (geoX){
+                                                    if (geoY){
+                                                        Register.register({
+                                                            username: username,
+                                                            password: password,
+                                                            type: usertype
+                                                        }, function (response) {
                                                             // console.log(response);
-                                                            if (response._id){
-                                                                alert('注册成功！');
-                                                                $location.path('signIn');
-                                                                window.location.reload();
-                                                            }else{
-                                                                $scope.errorInfo = '停车场已存在！';
-                                                                var user = new Users($scope.user);
-                                                                user.$remove(function () {
-                                                                    $location.path('signUp');
+                                                            if (response.uid) {
+                                                                $scope.user = response;
+                                                                var park = new Parks({
+                                                                    parkname: parkname,
+                                                                    address: parkaddress,
+                                                                    phone: parkphone,
+                                                                    carnum: parksize,
+                                                                    price: parkprice,
+                                                                    owner: response._id,
+                                                                    geoX: geoX,
+                                                                    geoY: geoY
                                                                 });
+                                                                park.$create(function (response) {
+                                                                    // console.log(response);
+                                                                    if (response._id) {
+                                                                        alert('注册成功！');
+                                                                        $location.path('signIn');
+                                                                        window.location.reload();
+                                                                    } else {
+                                                                        $scope.errorInfo = '停车场已存在！';
+                                                                        var user = new Users($scope.user);
+                                                                        user.$remove(function () {
+                                                                            $location.path('signUp');
+                                                                        });
+                                                                    }
+                                                                });
+
+                                                            } else {
+                                                                $scope.errorInfo = '用户已存在！';
+                                                                // alert('注册失败！');
                                                             }
                                                         });
-
                                                     } else {
-                                                        $scope.errorInfo = '用户已存在！';
-                                                        // alert('注册失败！');
+                                                        $scope.errorInfo = '坐标Y不能为空！';
                                                     }
-                                                });
+                                                } else {
+                                                    $scope.errorInfo = '坐标X不能为空！';
+                                                }
                                             } else {
                                                 $scope.errorInfo = '地址不能为空！';
                                             }
@@ -95,7 +108,7 @@ mainApplicationModule.controller('registerController',
                 } else {
                     $scope.errorInfo = '用户名不能为空！';
                 }
-            }
+            };
 
             $scope.register2 = function (username, password, confirmpassword, stationname) {
                 if (username) {

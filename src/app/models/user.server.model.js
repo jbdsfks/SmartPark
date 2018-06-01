@@ -56,7 +56,7 @@ UserSchema.statics.findOneByUId = function (uid, callback) {
     this.findOne({ uid: new RegExp(uid, 'g') }, callback);
 };
 UserSchema.pre('save', function(next) {
-    if (this.password) {
+    if (this.password && !this.salt) {
         this.salt = new
         Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);

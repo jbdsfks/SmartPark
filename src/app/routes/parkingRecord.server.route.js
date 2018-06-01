@@ -6,7 +6,9 @@ module.exports = function(app) {
 
     app.route('/api/parkingRecord/:recId')
         .get(parkingRecord.read)
+        .delete(parkingRecord.delete)
         .put(parkingRecord.update);
+        
     app.param('recId', parkingRecord.getParkingRecordByRecId);
 
     app.route('/api/parkingRecords/user/:userId')
@@ -17,6 +19,6 @@ module.exports = function(app) {
     app.route('/api/parkingRecords/park/:parkId')
         .get(parkingRecord.read);
         // .put(parkingRecord.update)
-        // .delete(parkingRecord.delete);
+        //.delete(parkingRecord.delete);
     app.param('parkId', parkingRecord.parkingRecordByPId);
 };

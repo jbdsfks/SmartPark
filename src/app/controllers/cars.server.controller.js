@@ -42,6 +42,7 @@ exports.update = function(req, res) {
     var car = req.car;
     car.brand = req.body.brand;
     car.color = req.body.color;
+    car.carId = req.body.carId;
     car.save(function(err) {
         if (err) {
             return res.status(400).send({

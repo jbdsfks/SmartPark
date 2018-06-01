@@ -65,7 +65,7 @@
               <tbody>
                 <tr ng-repeat="obj in list">
                     <!--<td>{{obj}}</td>-->
-                    <td>{{obj._id}}</td>
+                    <td>{{obj.car.carId}}</td>
                     <td>{{obj.user.username}}</td>
                     <!--<td>{{obj.carid}}</td>-->
                     <td>{{obj.carin}}</td>
@@ -111,7 +111,7 @@
                 <tbody>
                 <tr ng-repeat="obj in list">
                     <!--<td>{{obj}}</td>-->
-                    <td>{{obj._id}}</td>
+                    <td>{{obj.car.carId}}</td>
                     <td>{{obj.user.username}}</td>
                     <!--<td>{{obj.carid}}</td>-->
                     <td>{{obj.carin}}</td>
@@ -188,17 +188,9 @@
           <center><h3>基本信息</h3>
               <table class="table" style="text-align: center;">
                <tr>
-                  <th class="th-info">用户名</th>
+                  <th class="th-info">管理员</th>
                   <th class="th-info">{{username}}</th>
                 </tr>
-                <tr>
-                  <th class="th-info">密码</th>
-                  <th class="th-info">{{password}}</th>
-                </tr>
-                <tr>
-                  <th class="th-info">停车场编号</th>
-                  <th class="th-info">{{parkid}}</th>
-                <tr>
                   <th class="th-info">停车场名称</th>
                   <th class="th-info">{{parkname}}</th>
                 </tr>
@@ -233,17 +225,9 @@
     <div style="width: 80%;position:relative;left: 250px;top: -150px;">
      <center><h3>更改信息</h3>
       <table class="table" style="text-align: center;">
-          <!--<tr>-->
-            <!--<th class="th-info">用户名</th>-->
-            <!--<th class="th-info"><input id="username" type="text" autocomplete="off"  ng-model="username" ng-click="clearErrorInfo()"/></th>-->
-          <!--</tr>-->
-          <!--<tr>-->
-            <!--<th class="th-info">密码</th>-->
-            <!--<th class="th-info"><input id="password" type="password" autocomplete="off"  ng-model="password" ng-click="clearErrorInfo()"/></th>-->
-          <!--</tr>-->
           <tr>
-            <th class="th-info">停车场编号</th>
-            <th class="th-info">{{parkid}}</th>
+            <th class="th-info">管理员</th>
+            <th class="th-info">{{username}}</th>
           </tr>
           <tr>
             <th class="th-info">停车场名称</th>

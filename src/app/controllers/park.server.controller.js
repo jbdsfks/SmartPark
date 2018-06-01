@@ -13,6 +13,7 @@ var getErrorMessage = function (err) {
 
 exports.create = function (req, res) {
     var park = new Park(req.body);
+    console.log(park);
     park.freenum = park.carnum;
     // park.owner = req.user;
     park.save(function (err) {

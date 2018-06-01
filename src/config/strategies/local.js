@@ -13,6 +13,7 @@ module.exports = function () {
         User.findOne({
             uid: uid
         }, function (err, user) {
+            console.log(user);
             if (err) {
                 return done(err);
             }
@@ -20,6 +21,7 @@ module.exports = function () {
                 return done(null, false, req.flash('error','用户名不存在！'));
             }
             if (!user.authenticate(password)) {
+                console.log(1);
                 return done(null, false, req.flash('error','密码错误！'));
             }
             // if (user.type !== type){

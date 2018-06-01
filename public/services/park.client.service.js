@@ -38,7 +38,10 @@ angular.module('parks').factory('Parks', ['$resource', function ($resource) {
                 carnum: '@carnum',
                 price: '@price',
                 phone: '@phone',
-                address: '@address'
+                address: '@address',
+                geoX: '@geoX',
+                geoY: '@geoY',
+                owner: '@owner'
             }
         },
         findParkByOwnerId:{

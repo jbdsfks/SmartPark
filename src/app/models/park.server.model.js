@@ -40,17 +40,13 @@ var ParkSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    geo:{
-        x:{
-            type:Number,
-            required: true,
-            default:0
-        },
-        y:{
-            type:Number,
-            required: true,
-            default:0
-        }
+    geoX:{
+        type:Number,
+        required:true
+    },
+    geoY:{
+        type:Number,
+        required:true
     }
 });
 

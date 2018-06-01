@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     ParkingRecord = mongoose.model('ParkingRecord'),
-    Park = mongoose.model('Park');
+    Park = mongoose.model('Park'),
+    User = mongoose.model('User');
 
 var getErrorMessage = function (err) {
     if (err.errors) {
@@ -52,7 +53,7 @@ exports.create = function (req, res) {
 exports.listByUid = function (req, res) {
     ParkingRecord.find({
         user: req.user._id
-    }).sort('-created').populate('user park car', 'username uid').exec(function (err, parkingRecords) {
+    }).sort('-created').populate('user park car', 'username uid parkname carId').exec(function (err, parkingRecords) {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
@@ -66,7 +67,7 @@ exports.listByUid = function (req, res) {
 exports.parkingRecordByPId = function (req, res, next, pid) {
     ParkingRecord.find({
         park: pid
-    }).populate('user park car', 'username uid').exec(function (err, parkingRecords) {
+    }).populate('user park car', 'username uid parkname carId').exec(function (err, parkingRecords) {
         if (err) return next(err);
         if (!parkingRecords) {
             req.parkingRecord = JSON.stringify();
@@ -108,14 +109,29 @@ exports.update = function (req, res) {
                         message: getErrorMessage(err)
                     });
                 } else {
-                    parkingRecord.save(function (err) {
-                        if (err) {
-                            return res.status(400).send({
-                                message: getErrorMessage(err)
-                            });
-                        } else {
-                            res.json(parkingRecord);
-                        }
+
+                    User.findOne({
+                        _id:parkingRecord.user
+                    }).exec(function(err, user){
+                        console.log(user);
+                        user.money = user.money - pay;
+                        user.save(function (err){
+                            if (err){
+                                return res.status(400).send({
+                                    message: getErrorMessage(err)
+                                });
+                            }else{
+                                parkingRecord.save(function (err) {
+                                    if (err) {
+                                        return res.status(400).send({
+                                            message: getErrorMessage(err)
+                                        });
+                                    } else {
+                                        res.json(parkingRecord);
+                                    }
+                                });
+                            }
+                        });
                     });
                 }
             });
