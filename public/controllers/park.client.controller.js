@@ -247,7 +247,7 @@ mainApplicationModule.controller('parkController',
             $scope.logout = function () {
                 alert('注销成功！');
                 delete localStorage.cookie;
-                $location.path('/signIn');
+                $location.path('/signOut');
                 window.location.reload();
             };
 
