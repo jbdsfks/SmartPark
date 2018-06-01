@@ -114,24 +114,30 @@ exports.update = function (req, res) {
                         _id:parkingRecord.user
                     }).exec(function(err, user){
                         console.log(user);
-                        user.money = user.money - pay;
-                        user.save(function (err){
-                            if (err){
-                                return res.status(400).send({
-                                    message: getErrorMessage(err)
-                                });
-                            }else{
-                                parkingRecord.save(function (err) {
-                                    if (err) {
-                                        return res.status(400).send({
-                                            message: getErrorMessage(err)
-                                        });
-                                    } else {
-                                        res.json(parkingRecord);
-                                    }
-                                });
-                            }
-                        });
+                        if (user.money < pay){
+                            return res.status(400).send({
+                                message: getErrorMessage('余额不足！')
+                            });
+                        }else{
+                            user.money = user.money - pay;
+                            user.save(function (err){
+                                if (err){
+                                    return res.status(400).send({
+                                        message: getErrorMessage(err)
+                                    });
+                                }else{
+                                    parkingRecord.save(function (err) {
+                                        if (err) {
+                                            return res.status(400).send({
+                                                message: getErrorMessage(err)
+                                            });
+                                        } else {
+                                            res.json(parkingRecord);
+                                        }
+                                    });
+                                }
+                            });
+                        }
                     });
                 }
             });
