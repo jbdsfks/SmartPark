@@ -30,6 +30,11 @@ var ParkingRecordSchema = new Schema({
     carout: {
         type: String,
         default: ''
+    },
+    Txtype:{
+        type:String,
+        required:true,
+        default:"TRA"
     }
 });
 

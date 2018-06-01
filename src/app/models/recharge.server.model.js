@@ -14,6 +14,11 @@ var RechargeSchema = new Schema({
     money:{
         type:Number,
         required:true
+    },
+    Txtype:{
+        type:String,
+        required:true,
+        default:"REC"
     }
 });
 

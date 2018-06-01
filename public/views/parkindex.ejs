@@ -53,7 +53,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Id</th>
+                  <th>CarId</th>
                   <th>Username</th>
                   <!--<th>Carid</th>-->
                   <th>Intime</th>
@@ -85,21 +85,22 @@
 
   <div class="row-fluid" ng-show="parkingrecord">
     <h2>停车记录</h2>
-    <div style="position: relative;top: -70px;left:350px;width: 50%;">
-      <center>
-        <input id="parkid" type="text" autocomplete="off" placeholder="请输入车牌号" ng-model="carid" ng-click="clearErrorInfo()" style="width: 300px;height: 30px;font-size: 17px;margin-top: 10px;" />
-        &nbsp;&nbsp;&nbsp;
-        <button class="btn btn-success btn-lg" type="button" style="width: 50px;height: 40px;" ng-click="Quary()">查询</button>
-        <p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>
-      </center>
-    </div>
+      <br>
+    <!--<div style="position: relative;top: -70px;left:350px;width: 50%;">-->
+      <!--<center>-->
+        <!--<input id="parkid" type="text" autocomplete="off" placeholder="请输入车牌号" ng-model="carid" ng-click="clearErrorInfo()" style="width: 300px;height: 30px;font-size: 17px;margin-top: 10px;" />-->
+        <!--&nbsp;&nbsp;&nbsp;-->
+        <!--<button class="btn btn-success btn-lg" type="button" style="width: 50px;height: 40px;" ng-click="Quary()">查询</button>-->
+        <!--<p class="text-danger" style="color: red;" ng-bind="errorInfo"></p>-->
+      <!--</center>-->
+    <!--</div>-->
 
     <center>
         <div style="position: relative;top:-50px;width: 94%;">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>CarId</th>
                     <th>Username</th>
                     <!--<th>Carid</th>-->
                     <th>Intime</th>
