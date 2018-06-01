@@ -107,6 +107,9 @@ mainApplicationModule.controller('parkController',
                         $scope.divList();
                         $scope.todayparking = false;
                         $scope.parkingrecord = true;
+                        $scope.quarycarid = false;
+                        $scope.setting = false;
+                        $scope.alterinfo = false;
                     }
                 });
                 // init();
@@ -133,7 +136,10 @@ mainApplicationModule.controller('parkController',
                             func(record);
                             $scope.divList();
                             $scope.todayparking = false;
+                            $scope.parkingrecord = false;
                             $scope.quarycarid = true;
+                            $scope.setting = false;
+                            $scope.alterinfo = false;
                             $scope.errorInfo = '';
                         } else {
                             $scope.errorInfo = '该车牌无停车记录！';
@@ -146,20 +152,32 @@ mainApplicationModule.controller('parkController',
 
             $scope.Setting = function () {
                 // init();
+                // $scope.todayparking = false;
+                // $scope.setting = true;
                 $scope.todayparking = false;
+                $scope.parkingrecord = false;
+                $scope.quarycarid = false;
                 $scope.setting = true;
+                $scope.alterinfo = false;
             };
 
             $scope.Info = function () {
                 // init();
                 $scope.todayparking = false;
+                $scope.parkingrecord = false;
+                $scope.quarycarid = false;
                 $scope.setting = true;
                 $scope.alterinfo = false;
             };
 
             $scope.AlterInfo = function () {
                 // init();
+                // $scope.todayparking = false;
+                // $scope.setting = false;
+                // $scope.alterinfo = true;
                 $scope.todayparking = false;
+                $scope.parkingrecord = false;
+                $scope.quarycarid = false;
                 $scope.setting = false;
                 $scope.alterinfo = true;
             };
