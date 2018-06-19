@@ -86,6 +86,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
     var parkingRecord = req.parkingRecord;
     parkingRecord.carout = req.body.carout;
+    parkingRecord.Date = String((new Date()).getTime());
     var time_in = new Date(parkingRecord.carin),
         time_out = new Date(parkingRecord.carout);
     var hours = Math.ceil((time_out - time_in) / (3600 * 1000));

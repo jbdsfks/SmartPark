@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var CarShema = new Schema({
     created: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     carId:{
         type:String,

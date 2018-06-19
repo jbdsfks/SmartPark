@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port,host);
-console.log(port);
+console.log('Server start at '+host+':'+port);
 server.on('error', onError);
 server.on('listening', onListening);
 

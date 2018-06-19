@@ -16,6 +16,7 @@ exports.create = function (req, res) {
 
     var recharge = new Recharge();
     recharge.money = req.body.money;
+    recharge.Date = String((new Date()).getTime());
     User.findOne({
         uid:req.body.user
     }).exec(function (err, user) {
@@ -24,7 +25,7 @@ exports.create = function (req, res) {
                 message: getErrorMessage(err)
             });
         }
-        // console.log(user);
+        console.log(user);
         recharge.user = user._id;
         recharge.save(function (err) {
             if (err){

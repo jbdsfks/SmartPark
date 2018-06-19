@@ -4,7 +4,7 @@ var mongooose = require('mongoose'),
 var RechargeSchema = new Schema({
     created:{
         type:Date,
-        default:new Date
+        default:Date.now
     },
     user:{
         type:Schema.ObjectId,
@@ -19,6 +19,10 @@ var RechargeSchema = new Schema({
         type:String,
         required:true,
         default:"REC"
+    },
+    Date:{
+        type:String,
+        required:true
     }
 });
 

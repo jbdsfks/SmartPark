@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var ParkSchema = new Schema({
     created:{
         type: Date,
-        default: new Date()
+        default: Date.now
     },
     parkname:{
         type: String,

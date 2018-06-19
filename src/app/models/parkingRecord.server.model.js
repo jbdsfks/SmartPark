@@ -4,7 +4,7 @@ var mongooose = require('mongoose'),
 var ParkingRecordSchema = new Schema({
     created: {
         type: Date,
-        default: new Date
+        default: Date.now
     },
     user: {
         type: Schema.ObjectId,
@@ -35,6 +35,10 @@ var ParkingRecordSchema = new Schema({
         type:String,
         required:true,
         default:"TRA"
+    },
+    Date:{
+        type:String,
+        default:''
     }
 });
 
