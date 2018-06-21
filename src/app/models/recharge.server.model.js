@@ -24,6 +24,6 @@ var RechargeSchema = new Schema({
         type:String,
         required:true
     }
-});
+}, {versionKey: false});
 
 mongooose.model('Recharge', RechargeSchema);

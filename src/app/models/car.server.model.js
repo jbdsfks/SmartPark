@@ -22,6 +22,6 @@ var CarShema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     }
-});
+}, {versionKey: false});
 
 mongoose.model('Car', CarShema);

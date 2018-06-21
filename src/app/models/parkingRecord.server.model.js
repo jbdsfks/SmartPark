@@ -40,6 +40,6 @@ var ParkingRecordSchema = new Schema({
         type:String,
         default:''
     }
-});
+}, {versionKey: false});
 
 mongooose.model('ParkingRecord', ParkingRecordSchema);

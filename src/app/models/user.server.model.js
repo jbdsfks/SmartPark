@@ -43,7 +43,7 @@ var UserSchema = new Schema({
         type: Date,
         default: Date.now
     }
-});
+}, {versionKey: false});
 
 UserSchema.virtual('fullName').get(function() {
     return this.username;

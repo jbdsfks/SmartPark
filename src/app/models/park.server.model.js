@@ -48,6 +48,6 @@ var ParkSchema = new Schema({
         type:Number,
         required:true
     }
-});
+}, {versionKey: false});
 
 mongoose.model('Park', ParkSchema);
